@@ -1,0 +1,13 @@
+org,teamproject,url,repo-count,pipeline-count,pr-count
+"contosodevopstest","sample-repo-testing","https://dev.azure.com/contosodevopstest/sample-repo-testing",6,5,0
+"contosodevopstest","Server Migration","https://dev.azure.com/contosodevopstest/Server%20Migration",1,0,0
+"contosodevopstest","PartsUnlimited-YAML","https://dev.azure.com/contosodevopstest/PartsUnlimited-YAML",1,1,0
+"contosodevopstest","ContosoAir","https://dev.azure.com/contosodevopstest/ContosoAir",1,0,0
+"contosodevopstest","Proj_P1","https://dev.azure.com/contosodevopstest/Proj_P1",1,1,0
+"contosodevopstest","StarReads","https://dev.azure.com/contosodevopstest/StarReads",1,0,0
+"contosodevopstest","Youtube Clone","https://dev.azure.com/contosodevopstest/Youtube%20Clone",1,0,0
+"contosodevopstest","Azure Migration - IaC","https://dev.azure.com/contosodevopstest/Azure%20Migration%20-%20IaC",1,3,0
+"contosodevopstest","Tailwind Traders","https://dev.azure.com/contosodevopstest/Tailwind%20Traders",2,2,0
+"contosodevopstest","MyShuttle","https://dev.azure.com/contosodevopstest/MyShuttle",0,0,0
+"contosodevopstest","Azure Kubernetes Service","https://dev.azure.com/contosodevopstest/Azure%20Kubernetes%20Service",0,0,0
+"contosodevopstest","eShopOnWeb","https://dev.azure.com/contosodevopstest/eShopOnWeb",0,0,0

@@ -1,0 +1,21 @@
+Pipeline Rewiring Log - 2025-10-14 23:31:50
+========================================
+ADO Organization: contosodevopstest
+Team Project: MyShuttle
+GitHub Organization: ADO2GH-Migration
+Service Connection: b2b798f5-4ad5-45f6-a5cc-caa339f7cbdd
+Total Pipelines in Project: 5
+Pipelines Rewired: 5
+Pipelines Skipped: 0
+Successful: 5
+Failed: 0
+
+Migrated Repositories:
+  - AKS → AKS-new   - MyShuttle → MyShuttle-new
+
+Detailed Results:
+✅ SUCCESS: MyShuttle-Docker-YAML | MyShuttle → MyShuttle-new ✅ SUCCESS: MyShuttle-YAML | MyShuttle → MyShuttle-new ✅ SUCCESS: MyShuttleBuild | MyShuttle → MyShuttle-new ✅ SUCCESS: MyShuttleDockerBuild | MyShuttle → MyShuttle-new ✅ SUCCESS: MyShuttle_CICD | MyShuttle → MyShuttle-new
+
+Skipped Pipelines:
+
+========================================

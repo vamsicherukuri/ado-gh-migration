@@ -1,0 +1,206 @@
+**********************
+PowerShell transcript start
+Start time: 20251026015335
+Username: REDMOND\vcherukuri
+RunAs User: REDMOND\vcherukuri
+Configuration Name: 
+Machine: DESKTOP-O1HOLHF (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -noexit -command try { . "c:\Users\vcherukuri\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1" } catch {}
+Process ID: 21972
+PSVersion: 7.5.4
+PSEdition: Core
+GitCommitId: 7.5.4
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is validation-log-20251026-015334.txt
+
+========================================
+  ADO2GH Migration Validation Script
+========================================
+[1/3] Loading migration state file...
+📄 Auto-discovered state file: migration-state-comprehensive-20251026-015203.json
+✅ State file loaded: migration-state-comprehensive-20251026-015203.json
+   Total repositories to validate: 15
+
+[2/3] Validating migrated repositories...
+
+🔍 Validating: contosodevopstest/sample-repo-testing/sample1 -> ADO2GH-Migration/sample1
+   📊 Validating ADO source...
+      ✅ ADO: 9 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 9 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=9 | GitHub=9
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/sample-repo-testing/sample2 -> ADO2GH-Migration/sample2
+   📊 Validating ADO source...
+      ✅ ADO: 4 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 4 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=4 | GitHub=4
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/sample-repo-testing/sample3 -> ADO2GH-Migration/sample3
+   📊 Validating ADO source...
+      ✅ ADO: 4 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 4 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=4 | GitHub=4
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/sample-repo-testing/sample4 -> ADO2GH-Migration/sample4
+   📊 Validating ADO source...
+      ✅ ADO: 4 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 4 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=4 | GitHub=4
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/sample-repo-testing/sample5 -> ADO2GH-Migration/sample5
+   📊 Validating ADO source...
+      ✅ ADO: 4 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 4 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=4 | GitHub=4
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/Server Migration/Azure Sentinel Template -> ADO2GH-Migration/Azure-Sentinel-Template
+   📊 Validating ADO source...
+      ✅ ADO: 0 commits, 0 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 1 commits, 0 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=0 | GitHub=1
+      📋 Branches: ADO=0 | GitHub=0
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/sample-repo-testing/sample-repo-testing -> ADO2GH-Migration/sample-repo-testing
+   📊 Validating ADO source...
+      ✅ ADO: 0 commits, 0 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 1 commits, 0 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=0 | GitHub=1
+      📋 Branches: ADO=0 | GitHub=0
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/PartsUnlimited-YAML/PartsUnlimited -> ADO2GH-Migration/PartsUnlimited
+   📊 Validating ADO source...
+      ✅ ADO: 124 commits, 11 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 115 commits, 11 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=124 | GitHub=115
+      📋 Branches: ADO=11 | GitHub=11
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/ContosoAir/ContosoAir -> ADO2GH-Migration/ContosoAir
+   📊 Validating ADO source...
+      ✅ ADO: 1 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 1 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=1 | GitHub=1
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/Proj_P1/Proj_P1 -> ADO2GH-Migration/Proj_P1
+   📊 Validating ADO source...
+      ✅ ADO: 98 commits, 5 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 71 commits, 5 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=98 | GitHub=71
+      📋 Branches: ADO=5 | GitHub=5
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/StarReads/StarReads -> ADO2GH-Migration/StarReads
+   📊 Validating ADO source...
+      ✅ ADO: 6 commits, 2 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 1 commits, 2 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=6 | GitHub=1
+      📋 Branches: ADO=2 | GitHub=2
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/Youtube Clone/Youtube Clone -> ADO2GH-Migration/Youtube-Clone
+   📊 Validating ADO source...
+      ✅ ADO: 0 commits, 0 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 1 commits, 0 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=0 | GitHub=1
+      📋 Branches: ADO=0 | GitHub=0
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/Tailwind Traders/TailwindTraders-Backend -> ADO2GH-Migration/TailwindTraders-Backend
+   📊 Validating ADO source...
+      ✅ ADO: 425 commits, 6 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 355 commits, 6 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=425 | GitHub=355
+      📋 Branches: ADO=6 | GitHub=6
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/Tailwind Traders/TailwindTraders-Website -> ADO2GH-Migration/TailwindTraders-Website
+   📊 Validating ADO source...
+      ✅ ADO: 410 commits, 33 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 342 commits, 33 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=410 | GitHub=342
+      📋 Branches: ADO=33 | GitHub=33
+   ✅ Validation COMPLETED
+
+🔍 Validating: contosodevopstest/Azure Migration - IaC/IaC Migration -> ADO2GH-Migration/IaC-Migration
+   📊 Validating ADO source...
+      ✅ ADO: 2 commits, 1 branches
+   📊 Validating GitHub target...
+      ✅ GitHub: 2 commits, 1 branches
+   📊 Comparison Results:
+      📋 Commits: ADO=2 | GitHub=2
+      📋 Branches: ADO=1 | GitHub=1
+   ✅ Validation COMPLETED
+
+[3/3] Updating state file with validation results...
+✅ State file updated with validation results
+
+========================================
+  Validation Summary
+========================================
+📊 Total Repositories: 15
+✅ Successful Validations: 15
+❌ Incomplete: 0
+⏱️  Total Duration: 00:00:15.7067473
+
+🎉 All repositories validated successfully!
+
+🎯 Next Steps:
+   1. (Optional) Run 4_generate_mannequins.ps1 to identify user mappings
+   2. (Optional) Run 5_reclaim_mannequins.ps1 to reclaim mannequin accounts
+   3. Run 6_rewire_pipelines.ps1 to update pipeline configurations
+   4. (Optional) Run 7_integrate_boards.ps1 for Azure Boards integration
+   5. (Optional) Run 8_disable_ado_repos.ps1 to disable ADO repositories
+
+🏁 Validation completed!
+**********************
+PowerShell transcript end
+End time: 20251026015350
+**********************

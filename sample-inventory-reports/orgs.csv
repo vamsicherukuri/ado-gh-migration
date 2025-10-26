@@ -1,0 +1,2 @@
+name,url,owner,teamproject-count,repo-count,pipeline-count,is-pat-org-admin,pr-count
+"contosodevopstest","https://dev.azure.com/contosodevopstest","System Administrator (admin@MngEnvMCAP267305.onmicrosoft.com)",12,15,12,True,0

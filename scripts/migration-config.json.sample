@@ -1,0 +1,38 @@
+{
+  "adoOrganization": "your-ado-organization",
+  "githubOrganization": "your-github-organization",
+  "scripts": {
+    "inventory": {
+      "adoOrg": "your-ado-organization"
+    },
+    "checkActiveProcess": {
+      "repoCSV": "repos.csv"
+    },
+    "migrateRepo": {
+      "repoCSV": "repos.csv",
+      "maxConcurrentJobs": 4,
+      "pollingIntervalSeconds": 15,
+      "jobTimeoutMinutes": 20
+    },
+    "migrationValidation": {
+      "stateFile": "auto"
+    },
+    "generateMannequins": {
+      "outputCSV": "mannequins.csv"
+    },
+    "reclaimMannequins": {
+      "inputCSV": "mannequins.csv",
+      "skipInvitation": false
+    },
+    "rewirePipelines": {
+      "stateFile": "auto",
+      "pipelinesCSV": "pipelines.csv"
+    },
+    "integrateBoards": {
+      "stateFile": "auto"
+    },
+    "disableAdoRepos": {
+      "stateFile": "auto"
+    }
+  }
+}

@@ -1,0 +1,716 @@
+{
+  "FailedRepositories": [],
+  "SourceFile": "repos.csv",
+  "MigrationEndTime": "2025-10-26 01:52:03",
+  "SuccessfulMigrations": 15,
+  "FollowUpActions": {
+    "ValidationRequired": {
+      "Message": "Run 3_migration_validation.ps1 to validate all migrated repositories",
+      "RequiredFor": 15
+    },
+    "AdoRepositoryDisabling": {
+      "RepositoriesToDisable": [
+        {
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "sample1"
+        },
+        {
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "sample2"
+        },
+        {
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "sample3"
+        },
+        {
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "sample4"
+        },
+        {
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "sample5"
+        },
+        {
+          "AdoTeamProject": "Server Migration",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "Azure Sentinel Template"
+        },
+        {
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "sample-repo-testing"
+        },
+        {
+          "AdoTeamProject": "PartsUnlimited-YAML",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "PartsUnlimited"
+        },
+        {
+          "AdoTeamProject": "ContosoAir",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "ContosoAir"
+        },
+        {
+          "AdoTeamProject": "Proj_P1",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "Proj_P1"
+        },
+        {
+          "AdoTeamProject": "StarReads",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "StarReads"
+        },
+        {
+          "AdoTeamProject": "Youtube Clone",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "Youtube Clone"
+        },
+        {
+          "AdoTeamProject": "Tailwind Traders",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "TailwindTraders-Backend"
+        },
+        {
+          "AdoTeamProject": "Tailwind Traders",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "TailwindTraders-Website"
+        },
+        {
+          "AdoTeamProject": "Azure Migration - IaC",
+          "AdoOrganization": "contosodevopstest",
+          "AdoRepository": "IaC Migration"
+        }
+      ],
+      "Message": "Run 8_disable_ado_repos.ps1 after validation and pipeline rewiring",
+      "RequiredFor": 15
+    },
+    "PipelineRewiring": {
+      "Message": "Run 6_rewire_pipelines.ps1 after validation completes",
+      "RequiredFor": 15,
+      "ReadyRepositories": [
+        {
+          "GitHubRepository": "sample1",
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoRepository": "sample1"
+        },
+        {
+          "GitHubRepository": "sample2",
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoRepository": "sample2"
+        },
+        {
+          "GitHubRepository": "sample3",
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoRepository": "sample3"
+        },
+        {
+          "GitHubRepository": "sample4",
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoRepository": "sample4"
+        },
+        {
+          "GitHubRepository": "sample5",
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoRepository": "sample5"
+        },
+        {
+          "GitHubRepository": "Azure-Sentinel-Template",
+          "AdoTeamProject": "Server Migration",
+          "AdoRepository": "Azure Sentinel Template"
+        },
+        {
+          "GitHubRepository": "sample-repo-testing",
+          "AdoTeamProject": "sample-repo-testing",
+          "AdoRepository": "sample-repo-testing"
+        },
+        {
+          "GitHubRepository": "PartsUnlimited",
+          "AdoTeamProject": "PartsUnlimited-YAML",
+          "AdoRepository": "PartsUnlimited"
+        },
+        {
+          "GitHubRepository": "ContosoAir",
+          "AdoTeamProject": "ContosoAir",
+          "AdoRepository": "ContosoAir"
+        },
+        {
+          "GitHubRepository": "Proj_P1",
+          "AdoTeamProject": "Proj_P1",
+          "AdoRepository": "Proj_P1"
+        },
+        {
+          "GitHubRepository": "StarReads",
+          "AdoTeamProject": "StarReads",
+          "AdoRepository": "StarReads"
+        },
+        {
+          "GitHubRepository": "Youtube-Clone",
+          "AdoTeamProject": "Youtube Clone",
+          "AdoRepository": "Youtube Clone"
+        },
+        {
+          "GitHubRepository": "TailwindTraders-Backend",
+          "AdoTeamProject": "Tailwind Traders",
+          "AdoRepository": "TailwindTraders-Backend"
+        },
+        {
+          "GitHubRepository": "TailwindTraders-Website",
+          "AdoTeamProject": "Tailwind Traders",
+          "AdoRepository": "TailwindTraders-Website"
+        },
+        {
+          "GitHubRepository": "IaC-Migration",
+          "AdoTeamProject": "Azure Migration - IaC",
+          "AdoRepository": "IaC Migration"
+        }
+      ]
+    }
+  },
+  "TotalRepositories": 15,
+  "MigrationTimestamp": "20251026-015203",
+  "MigratedRepositories": [
+    {
+      "AdoTeamProject": "sample-repo-testing",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "sample1",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:43:18",
+      "AdoRepository": "sample1",
+      "Duration": "00:03:08.4751957"
+    },
+    {
+      "AdoTeamProject": "sample-repo-testing",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "sample2",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:43:20",
+      "AdoRepository": "sample2",
+      "Duration": "00:03:04.0790572"
+    },
+    {
+      "AdoTeamProject": "sample-repo-testing",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "sample3",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:43:24",
+      "AdoRepository": "sample3",
+      "Duration": "00:03:02.5440361"
+    },
+    {
+      "AdoTeamProject": "sample-repo-testing",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "sample4",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:43:30",
+      "AdoRepository": "sample4",
+      "Duration": "00:03:03.7507203"
+    },
+    {
+      "AdoTeamProject": "sample-repo-testing",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "sample5",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:43:33",
+      "AdoRepository": "sample5",
+      "Duration": "00:03:02.2134814"
+    },
+    {
+      "AdoTeamProject": "Server Migration",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "Azure-Sentinel-Template",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:45:34",
+      "AdoRepository": "Azure Sentinel Template",
+      "Duration": "00:02:02.2114006"
+    },
+    {
+      "AdoTeamProject": "sample-repo-testing",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "sample-repo-testing",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:46:37",
+      "AdoRepository": "sample-repo-testing",
+      "Duration": "00:03:10.2405723"
+    },
+    {
+      "AdoTeamProject": "PartsUnlimited-YAML",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "PartsUnlimited",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:46:40",
+      "AdoRepository": "PartsUnlimited",
+      "Duration": "00:03:03.7982087"
+    },
+    {
+      "AdoTeamProject": "ContosoAir",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "ContosoAir",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:46:44",
+      "AdoRepository": "ContosoAir",
+      "Duration": "00:03:02.3372407"
+    },
+    {
+      "AdoTeamProject": "Proj_P1",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "Proj_P1",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:46:50",
+      "AdoRepository": "Proj_P1",
+      "Duration": "00:03:03.9281162"
+    },
+    {
+      "AdoTeamProject": "StarReads",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "StarReads",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:48:48",
+      "AdoRepository": "StarReads",
+      "Duration": "00:03:05.7131027"
+    },
+    {
+      "AdoTeamProject": "Youtube Clone",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "Youtube-Clone",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:50:50",
+      "AdoRepository": "Youtube Clone",
+      "Duration": "00:04:03.0962986"
+    },
+    {
+      "AdoTeamProject": "Tailwind Traders",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "TailwindTraders-Backend",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:51:06",
+      "AdoRepository": "TailwindTraders-Backend",
+      "Duration": "00:04:03.4343227"
+    },
+    {
+      "AdoTeamProject": "Tailwind Traders",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "TailwindTraders-Website",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:51:14",
+      "AdoRepository": "TailwindTraders-Website",
+      "Duration": "00:04:05.9639867"
+    },
+    {
+      "AdoTeamProject": "Azure Migration - IaC",
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubRepository": "IaC-Migration",
+      "AdoOrganization": "contosodevopstest",
+      "MigratedAt": "2025-10-26 01:52:02",
+      "AdoRepository": "IaC Migration",
+      "Duration": "00:05:05.3161952"
+    }
+  ],
+  "TotalDuration": "00:12:04.6012457",
+  "FailedMigrations": 0,
+  "MigrationStartTime": "2025-10-26 01:39:58",
+  "ValidationResults": [
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:35",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 9,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "sample-repo-testing",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "sample1",
+      "AdoRepository": "sample1",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 9,
+        "AdoCommitCount": 9,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 9,
+        "BranchCount": 1
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:36",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "sample-repo-testing",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "sample2",
+      "AdoRepository": "sample2",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 4,
+        "AdoCommitCount": 4,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:36",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "sample-repo-testing",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "sample3",
+      "AdoRepository": "sample3",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 4,
+        "AdoCommitCount": 4,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:37",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "sample-repo-testing",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "sample4",
+      "AdoRepository": "sample4",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 4,
+        "AdoCommitCount": 4,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:38",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "sample-repo-testing",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "sample5",
+      "AdoRepository": "sample5",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 4,
+        "AdoCommitCount": 4,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 4,
+        "BranchCount": 1
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:39",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 1,
+        "BranchCount": 0
+      },
+      "AdoTeamProject": "Server Migration",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "Azure-Sentinel-Template",
+      "AdoRepository": "Azure Sentinel Template",
+      "ComparisonResults": {
+        "AdoBranchCount": 0,
+        "GitHubCommitCount": 1,
+        "AdoCommitCount": 0,
+        "GitHubBranchCount": 0
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 0,
+        "BranchCount": 0
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:40",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 1,
+        "BranchCount": 0
+      },
+      "AdoTeamProject": "sample-repo-testing",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "sample-repo-testing",
+      "AdoRepository": "sample-repo-testing",
+      "ComparisonResults": {
+        "AdoBranchCount": 0,
+        "GitHubCommitCount": 1,
+        "AdoCommitCount": 0,
+        "GitHubBranchCount": 0
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 0,
+        "BranchCount": 0
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:41",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 115,
+        "BranchCount": 11
+      },
+      "AdoTeamProject": "PartsUnlimited-YAML",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "PartsUnlimited",
+      "AdoRepository": "PartsUnlimited",
+      "ComparisonResults": {
+        "AdoBranchCount": 11,
+        "GitHubCommitCount": 115,
+        "AdoCommitCount": 124,
+        "GitHubBranchCount": 11
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 124,
+        "BranchCount": 11
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:42",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 1,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "ContosoAir",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "ContosoAir",
+      "AdoRepository": "ContosoAir",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 1,
+        "AdoCommitCount": 1,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 1,
+        "BranchCount": 1
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:43",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 71,
+        "BranchCount": 5
+      },
+      "AdoTeamProject": "Proj_P1",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "Proj_P1",
+      "AdoRepository": "Proj_P1",
+      "ComparisonResults": {
+        "AdoBranchCount": 5,
+        "GitHubCommitCount": 71,
+        "AdoCommitCount": 98,
+        "GitHubBranchCount": 5
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 98,
+        "BranchCount": 5
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:44",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 1,
+        "BranchCount": 2
+      },
+      "AdoTeamProject": "StarReads",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "StarReads",
+      "AdoRepository": "StarReads",
+      "ComparisonResults": {
+        "AdoBranchCount": 2,
+        "GitHubCommitCount": 1,
+        "AdoCommitCount": 6,
+        "GitHubBranchCount": 2
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 6,
+        "BranchCount": 2
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:45",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 1,
+        "BranchCount": 0
+      },
+      "AdoTeamProject": "Youtube Clone",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "Youtube-Clone",
+      "AdoRepository": "Youtube Clone",
+      "ComparisonResults": {
+        "AdoBranchCount": 0,
+        "GitHubCommitCount": 1,
+        "AdoCommitCount": 0,
+        "GitHubBranchCount": 0
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 0,
+        "BranchCount": 0
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:46",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 355,
+        "BranchCount": 6
+      },
+      "AdoTeamProject": "Tailwind Traders",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "TailwindTraders-Backend",
+      "AdoRepository": "TailwindTraders-Backend",
+      "ComparisonResults": {
+        "AdoBranchCount": 6,
+        "GitHubCommitCount": 355,
+        "AdoCommitCount": 425,
+        "GitHubBranchCount": 6
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 425,
+        "BranchCount": 6
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:48",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 342,
+        "BranchCount": 33
+      },
+      "AdoTeamProject": "Tailwind Traders",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "TailwindTraders-Website",
+      "AdoRepository": "TailwindTraders-Website",
+      "ComparisonResults": {
+        "AdoBranchCount": 33,
+        "GitHubCommitCount": 342,
+        "AdoCommitCount": 410,
+        "GitHubBranchCount": 33
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 410,
+        "BranchCount": 33
+      }
+    },
+    {
+      "ValidationTimestamp": "2025-10-26 01:53:49",
+      "Issues": [],
+      "GitHubOrganization": "ADO2GH-Migration",
+      "GitHubTargetValidation": {
+        "Accessible": true,
+        "CommitCount": 2,
+        "BranchCount": 1
+      },
+      "AdoTeamProject": "Azure Migration - IaC",
+      "ValidationStatus": "Success",
+      "AdoOrganization": "contosodevopstest",
+      "GitHubRepository": "IaC-Migration",
+      "AdoRepository": "IaC Migration",
+      "ComparisonResults": {
+        "AdoBranchCount": 1,
+        "GitHubCommitCount": 2,
+        "AdoCommitCount": 2,
+        "GitHubBranchCount": 1
+      },
+      "AdoSourceValidation": {
+        "Accessible": true,
+        "CommitCount": 2,
+        "BranchCount": 1
+      }
+    }
+  ],
+  "ValidationTimestamp": "2025-10-26 01:53:50",
+  "ValidationDuration": "00:00:15.6340870",
+  "ValidationSummary": {
+    "AllIssues": [],
+    "Incomplete": 0,
+    "TotalValidated": 15,
+    "Successful": 15
+  }
+}

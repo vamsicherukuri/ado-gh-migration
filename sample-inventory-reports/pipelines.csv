@@ -1,0 +1,13 @@
+org,teamproject,repo,pipeline,url
+"contosodevopstest","sample-repo-testing","sample1","\sample1-ci","https://dev.azure.com/contosodevopstest/sample-repo-testing/_build?definitionId=24"
+"contosodevopstest","sample-repo-testing","sample2","\sample2-ci","https://dev.azure.com/contosodevopstest/sample-repo-testing/_build?definitionId=25"
+"contosodevopstest","sample-repo-testing","sample3","\sample3-ci","https://dev.azure.com/contosodevopstest/sample-repo-testing/_build?definitionId=26"
+"contosodevopstest","sample-repo-testing","sample4","\sample4-ci","https://dev.azure.com/contosodevopstest/sample-repo-testing/_build?definitionId=27"
+"contosodevopstest","sample-repo-testing","sample5","\sample5-ci","https://dev.azure.com/contosodevopstest/sample-repo-testing/_build?definitionId=28"
+"contosodevopstest","PartsUnlimited-YAML","PartsUnlimited","\PartsUnlimited","https://dev.azure.com/contosodevopstest/PartsUnlimited-YAML/_build?definitionId=17"
+"contosodevopstest","Proj_P1","Proj_P1","\P1-CI-Pipeline","https://dev.azure.com/contosodevopstest/Proj_P1/_build?definitionId=16"
+"contosodevopstest","Azure Migration - IaC","IaC Migration","\Test-Migration-Pipeline","https://dev.azure.com/contosodevopstest/Azure%20Migration%20-%20IaC/_build?definitionId=20"
+"contosodevopstest","Azure Migration - IaC","IaC Migration","\Prod-Migration-Wave-Pipeline","https://dev.azure.com/contosodevopstest/Azure%20Migration%20-%20IaC/_build?definitionId=19"
+"contosodevopstest","Azure Migration - IaC","IaC Migration","\Bicep-Migration-Pipeline","https://dev.azure.com/contosodevopstest/Azure%20Migration%20-%20IaC/_build?definitionId=18"
+"contosodevopstest","Tailwind Traders","TailwindTraders-Backend","\Backend-CI","https://dev.azure.com/contosodevopstest/Tailwind%20Traders/_build?definitionId=8"
+"contosodevopstest","Tailwind Traders","TailwindTraders-Website","\Website-CI","https://dev.azure.com/contosodevopstest/Tailwind%20Traders/_build?definitionId=9"

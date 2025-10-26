@@ -1,0 +1,56 @@
+# ADO2GH Migration - Git Ignore File
+
+# Sensitive Configuration Files
+migration-config.json
+**/migration-config.json
+!sample-config-file/migration-config.json
+
+# Environment Variables
+.env
+*.env
+
+# Personal Access Tokens
+*.pat
+tokens.txt
+
+# Output Files (exclude actual migration outputs, keep samples)
+migration-state-*.json
+!sample-output-files/migration-state-*.json
+migration-log-*.csv
+!sample-output-files/migration-log-*.csv
+validation-log-*.txt
+!sample-output-files/validation-log-*.txt
+pipeline-rewiring-log-*.txt
+!sample-output-files/pipeline-rewiring-log-*.txt
+disable-report-*.md
+!sample-output-files/disable-report-*.md
+
+# CSV Files (exclude actual inventory, keep samples)
+repos.csv
+pipelines.csv
+orgs.csv
+team-projects.csv
+mannequins.csv
+!sample-inventory-reports/*.csv
+
+# PowerShell Debug/Transcript Files
+*.transcript
+*.log
+
+# VS Code Settings (optional - uncomment if you want to exclude)
+# .vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary Files
+*.tmp
+*.temp
+~$*

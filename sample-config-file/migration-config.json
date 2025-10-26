@@ -1,0 +1,32 @@
+{
+  "adoOrganization": "contosodevopstest",
+  "githubOrganization": "ADO2GH-Migration",
+  "scripts": {
+    "inventory": {
+      "adoOrg": "contosodevopstest"
+    },
+    "checkActiveProcess": {
+      "repoCSV": "repos.csv"
+    },
+    "migrateRepo": {
+      "repoCSV": "repos.csv",
+      "maxConcurrentJobs": 4,
+      "pollingIntervalSeconds": 15,
+      "jobTimeoutMinutes": 20
+    },
+    "generateMannequins": {
+      "outputCSV": "mannequins.csv"
+    },
+    "reclaimMannequins": {
+      "inputCSV": "mannequins.csv",
+      "skipInvitation": false
+    },
+    "rewirePipelines": {
+      "stateFile": "auto",
+      "pipelinesCSV": "pipelines.csv"
+    },
+    "disableAdoRepos": {
+      "stateFile": "auto"
+    }
+  }
+}
