@@ -21,15 +21,19 @@ By the end of this article, you'll understand:
 ## Table of Contents
 
 1. [Prerequisites: Setting Up Your Environment](#prerequisites-setting-up-your-environment)
-2. [Understanding the Migration Workflow](#understanding-the-migration-workflow)
-3. [The Inventory Script: Purpose and Importance](#the-inventory-script-purpose-and-importance)
-4. [Script Anatomy: How It Works](#script-anatomy-how-it-works)
-5. [Input Requirements and Configuration](#input-requirements-and-configuration)
-6. [Output Files and Data Structures](#output-files-and-data-structures)
-7. [Preparing Inventory Data for Migration](#preparing-inventory-data-for-migration)
-8. [Practical Examples and Use Cases](#practical-examples-and-use-cases)
-9. [Troubleshooting Common Issues](#troubleshooting-common-issues)
-10. [Next Steps: From Inventory to Migration](#next-steps-from-inventory-to-migration)
+2. [Personal Access Token Scope Requirements](#personal-access-token-scope-requirements)
+3. [Understanding the Migration Workflow](#understanding-the-migration-workflow)
+4. [Configuration File Setup](#configuration-file-setup)
+5. [Validating Your Setup](#validating-your-setup)
+6. [Script 0: Inventory Script (0_Inventory.ps1)](#script-0-inventory-script-0_inventoryps1)
+7. [Script 1: Active Process Check (1_check_active_process.ps1)](#script-1-active-process-check-1_check_active_processps1)
+8. [Script 2: Repository Migration (2_migrate_repo.ps1)](#script-2-repository-migration-2_migrate_repops1)
+9. [Script 3: Migration Validation (3_migration_validation.ps1)](#script-3-migration-validation-3_migration_validationps1)
+10. [Script 4: Generate Mannequins (4_generate_mannequins.ps1)](#script-4-generate-mannequins-4_generate_mannequinsps1)
+11. [Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)](#script-5-reclaim-mannequins-5_reclaim_mannequinsps1)
+12. [Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)](#script-6-rewire-pipelines-6_rewire_pipelinesps1)
+13. [Script 7: Integrate Boards (7_integrate_boards.ps1)](#script-7-integrate-boards-7_integrate_boardsps1)
+14. [Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)](#script-8-disable-ado-repositories-8_disable_ado_reposps1)
 
 ---
 
