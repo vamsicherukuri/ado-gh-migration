@@ -1,39 +1,35 @@
-# Automating Azure DevOps to GitHub Migration: A Deep Dive into the Inventory Script (Part 1)
+# 🚀Automating Azure DevOps to GitHub Enterprise Migration Using ADO2GH extension
+
+
 
 *Published: October 28, 2025*
 
 ---
 
-## Introduction
+## 🧭 Overview
 
-Migrating from Azure DevOps (ADO) to GitHub Enterprise (GHE) is a complex undertaking that requires careful planning, execution, and validation. While manual migration is possible for a handful of repositories, organizations with dozens or hundreds of repositories need an automated, repeatable, and traceable approach.
+Migrating from **Azure DevOps (ADO)** to **GitHub Enterprise (GHE)** is a complex undertaking that requires careful planning, execution, and validation. While manual migration is possible for a handful of repositories, organizations with dozens or hundreds of repositories need an automated, repeatable, and traceable approach.
 
-This is the first article in a comprehensive series that explores the **ADO2GH Migration PowerShell Scripts** — a suite of modular automation tools designed to streamline the entire migration lifecycle.
-
-By the end of this article, you'll understand:
-- Why inventory generation is critical to migration success
-- How the inventory script works under the hood
-- What inputs it requires and what outputs it produces
-- How to interpret and prepare the inventory data for migration
+This article marks the **first installment in a detailed series** introducing the **ADO2GH Migration PowerShell Scripts** - a **collection of modular automation scripts** purpose-built to simplify, orchestrate, and validate each stage of the migration journey, from initial preparation to final post-migration checks.
 
 ---
 
-## Table of Contents
+## 🗂️Table of Contents
 
-1. [Prerequisites: Setting Up Your Environment](#prerequisites-setting-up-your-environment)
-2. [Personal Access Token Scope Requirements](#personal-access-token-scope-requirements)
-3. [Understanding the Migration Workflow](#understanding-the-migration-workflow)
-4. [Configuration File Setup](#configuration-file-setup)
-5. [Validating Your Setup](#validating-your-setup)
-6. [Script 0: Inventory Script (0_Inventory.ps1)](#script-0-inventory-script-0_inventoryps1)
-7. [Script 1: Active Process Check (1_check_active_process.ps1)](#script-1-active-process-check-1_check_active_processps1)
-8. [Script 2: Repository Migration (2_migrate_repo.ps1)](#script-2-repository-migration-2_migrate_repops1)
-9. [Script 3: Migration Validation (3_migration_validation.ps1)](#script-3-migration-validation-3_migration_validationps1)
-10. [Script 4: Generate Mannequins (4_generate_mannequins.ps1)](#script-4-generate-mannequins-4_generate_mannequinsps1)
-11. [Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)](#script-5-reclaim-mannequins-5_reclaim_mannequinsps1)
-12. [Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)](#script-6-rewire-pipelines-6_rewire_pipelinesps1)
-13. [Script 7: Integrate Boards (7_integrate_boards.ps1)](#script-7-integrate-boards-7_integrate_boardsps1)
-14. [Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)](#script-8-disable-ado-repositories-8_disable_ado_reposps1)
+1. 🧰[Prerequisites: Setting Up Your Environment](#prerequisites-setting-up-your-environment)
+2. 🔐[Personal Access Token Scope Requirements](#personal-access-token-scope-requirements)
+3. 🧭[Understanding the Migration Workflow](#understanding-the-migration-workflow)
+4. ⚙️[Configuration File Setup](#configuration-file-setup)
+5. ✅[Validating Your Setup](#validating-your-setup)
+6. 🗂️[Script 0: Inventory Script (0_Inventory.ps1)](#script-0-inventory-script-0_inventoryps1)
+7. 🔍[Script 1: Active Process Check (1_check_active_process.ps1)](#script-1-active-process-check-1_check_active_processps1)
+8. 🚚[Script 2: Repository Migration (2_migrate_repo.ps1)](#script-2-repository-migration-2_migrate_repops1)
+9. 🧾[Script 3: Migration Validation (3_migration_validation.ps1)](#script-3-migration-validation-3_migration_validationps1)
+10. 🧍‍♂️[Script 4: Generate Mannequins (4_generate_mannequins.ps1)](#script-4-generate-mannequins-4_generate_mannequinsps1)
+11. 🔁[Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)](#script-5-reclaim-mannequins-5_reclaim_mannequinsps1)
+12. 🔗[Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)](#script-6-rewire-pipelines-6_rewire_pipelinesps1)
+13. 📋[Script 7: Integrate Boards (7_integrate_boards.ps1)](#script-7-integrate-boards-7_integrate_boardsps1)
+14. 🛑[Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)](#script-8-disable-ado-repositories-8_disable_ado_reposps1)
 
 ---
 
