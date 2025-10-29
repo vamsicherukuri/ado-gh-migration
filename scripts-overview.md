@@ -352,7 +352,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 🧰 **Prerequisites:**
 - **ADO_PAT** environment variable set with full access scope
 - **gh ado2gh CLI** extension installed
-- **migration-config.json** exists with proper configuration
+- `migration-config.json` exists with proper configuration
 
 💻 **Script Usage:**
 - Run with default settings: `.\0_Inventory.ps1` 
@@ -361,7 +361,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 
 ⚙️ **Order of operations:**
 - **[1/3]** Validate **ADO PAT** tokens.
-- **[2/3]** Load configuration from **migration-config.json** with parameter overrides
+- **[2/3]** Load configuration from `migration-config.json` with parameter overrides
 - **[3/3]** Generate inventory report using **gh ado2gh** CLI
 
 **🗂️ Output Files Generated:**
@@ -426,8 +426,8 @@ This script performs large-scale repository migration from Azure DevOps to GitHu
 - Ideally, `1_check_active_process.ps1` should be executed first to verify that there are no active **pipelines** or **pull requests**, followed by `0_Inventory.ps1` to generate the repository inventory.
 
 💻 **Script Usage:**
-- Reads **repos.csv** from migration-config.json settings: `.\2_migrate_repo.ps1`
-- Override the default CSV file path specified in **migration-config.json**: `.\2_migrate_repo.ps1 [-RepoCSV "repos.csv"]`
+- Reads **repos.csv** from `migration-config.json` settings: `.\2_migrate_repo.ps1`
+- Override the default CSV file path specified in `migration-config.json`: `.\2_migrate_repo.ps1 [-RepoCSV "repos.csv"]`
 - Limit parallel migrations (**default: 5, GitHub's maximum concurrent limit**): `.\2_migrate_repo.ps1 [-MaxParallelJobs 3]`
 
 ⚙️ **Order of operations:**
@@ -497,7 +497,7 @@ This script generates a CSV file of mannequin users (placeholder accounts) that 
 
 - GH_PAT environment variable set (GitHub Personal Access Token)
 - Repositories must be migrated first (run 2_migrate_repo.ps1)
-- migration-config.json configuration file
+- `migration-config.json` configuration file
 
 💻 **Script Usage:**
 - Uses settings from `migration-config.json` (default output: **mannequins.csv**): `.\4_generate_mannequins.ps1`
@@ -523,10 +523,10 @@ This script reclaims **mannequin** users (placeholder accounts) by mapping them 
 - **GH_PAT** environment variable set (GitHub Personal Access Token)
 - Script 4 **(4_generate_mannequins.ps1)** has been run to generate **mannequins.csv**
 - **Mannequins CSV** has been reviewed and updated with **target GitHub usernames**
-- **migration-config.json** exists with proper configuration
+- `migration-config.json` exists with proper configuration
 
 💻 **Script Usage:**
-- Uses settings from **migration-config.json** (default input: mannequins.csv): `.\5_reclaim_mannequins.ps1`
+- Uses settings from `migration-config.json` (default input: mannequins.csv): `.\5_reclaim_mannequins.ps1`
 - Use a custom CSV file location instead of the default: `.\5_reclaim_mannequins.ps1 -MannequinsCSV "custom-mannequins.csv"`
 
 ⚙️ **Order of operations:**
