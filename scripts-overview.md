@@ -354,16 +354,15 @@ This script generates an inventory report of Azure DevOps repositories at the or
 - **gh ado2gh CLI** extension installed
 - **migration-config.json** exists with proper configuration
 
+💻 **Script Usage:**
+- Run with default settings: `.\0_Inventory.ps1` 
+- Specify an Azure DevOps organization: `.\0_Inventory.ps1 -AdoOrg "your-ado-org"` 
+- Use a custom configuration file: `.\0_Inventory.ps1 -ConfigPath "custom-config.json"`
+
 ⚙️ **Order of operations:**
 - **[1/3]** Validate **ADO PAT** tokens.
 - **[2/3]** Load configuration from **migration-config.json** with parameter overrides
 - **[3/3]** Generate inventory report using **gh ado2gh** CLI
-
-💻 **Script Usage:**
-- Run with default settings: `.\0_Inventory.ps1` 
-- Specify an Azure DevOps organization: `.\0_Inventory.ps1 -AdoOrg "your-ado-org"` 
-- Use a custom configuration file: `.\0_Inventory.ps1 -ConfigPath "custom-config.json"` 
-
 
 **🗂️ Output Files Generated:**
 - Contains the list of **Azure DevOps organizations**: `orgs.csv`
@@ -389,14 +388,6 @@ This script checks for active processes **(pipelines and PRs)** on ADO repositor
 `scripts.checkActiveProcess.repoCSV` - Path to repository CSV file.
 - `repos.csv` (or configured CSV file) with columns: `org`, `teamproject`, `repo`
 
-⚙️ **Order of operations:**
-- **[1/5]** Validate ADO PAT tokens. 
-- **[2/5]** Load configuration from `migration-config.json` with parameter overrides
-- **[3/5]** Normalize repository input from parameters or CSV file
-- **[4/5]** Check active processes **(pipelines and PRs)** for each repository
-- **[5/5]** Summarize results and provide next steps
-
-
 💻 **Script Usage:**
 - Check all repos reading from repo.csv generated from inventory report.
 `.\1_check_active_process.ps1` 
@@ -407,6 +398,12 @@ This script checks for active processes **(pipelines and PRs)** on ADO repositor
 - Check multiple repositories within a project
 `.\1_check_active_process.ps1 -Repositories @("repo1", "repo2") -TeamProject "project"`
 
+⚙️ **Order of operations:**
+- **[1/5]** Validate ADO PAT tokens. 
+- **[2/5]** Load configuration from `migration-config.json` with parameter overrides
+- **[3/5]** Normalize repository input from parameters or CSV file
+- **[4/5]** Check active processes **(pipelines and PRs)** for each repository
+- **[5/5]** Summarize results and provide next steps
 
 **🗂️ Output Files generated:**
 
@@ -428,6 +425,10 @@ This script performs large-scale repository migration from Azure DevOps to GitHu
 - **Maximum 5 concurrent migrations** per organization (enforced by GitHub). Script respects this limit with the `$MaxParallelJobs` parameter (default: 5)
 - Ideally, `1_check_active_process.ps1` should be executed first to verify that there are no active **pipelines** or **pull requests**, followed by `0_Inventory.ps1` to generate the repository inventory.
 
+💻 **Script Usage:**
+- Reads **repos.csv** from migration-config.json settings: `.\2_migrate_repo.ps1`
+- Override the default CSV file path specified in **migration-config.json**: `.\2_migrate_repo.ps1 [-RepoCSV "repos.csv"]`
+- Limit parallel migrations (**default: 5, GitHub's maximum concurrent limit**): `.\2_migrate_repo.ps1 [-MaxParallelJobs 3]`
 
 ⚙️ **Order of operations:**
 - **[1/5]** Validate PAT tokens (ADO_PAT and GH_PAT environment variables)
@@ -452,11 +453,6 @@ This script performs large-scale repository migration from Azure DevOps to GitHu
   - Export `migration-state-comprehensive-YYYYMMDD-HHMMSS.json`
   - Display summary and next steps
 
-💻 **Script Usage:**
-- Reads **repos.csv** from migration-config.json settings: `.\2_migrate_repo.ps1`
-- Override the default CSV file path specified in **migration-config.json**: `.\2_migrate_repo.ps1 [-RepoCSV "repos.csv"]`
-- Limit parallel migrations (**default: 5, GitHub's maximum concurrent limit**): `.\2_migrate_repo.ps1 [-MaxParallelJobs 3]` 
-
 **🗂️ Output Files generated:**
 - state file for automation and follow-up scripts: `migration-state-comprehensive-YYYYMMDD-HHMMSS.json`
 - detailed CSV log with `MigrationId` and `GitHubRepoUrl` for analysis: `migration-log-YYYYMMDD-HHMMSS.csv` 
@@ -475,16 +471,14 @@ This script validates migrated repositories by retrieving data from both **ADO**
 - ADO_PAT & GH_PAT environment variable set.
 - State file from `2_migrate_repo.ps1`
 
+💻 **Script Usage:**
+- Automatically finds and uses the latest migration-state-comprehensive-*.json file:: `.\3_migration_validation.ps1`
+- Use this when you have multiple migration state files and want to validate a specific one from your migration: `.\3_migration_validation.ps1 -StateFile "migration-state-comprehensive-YYYYMMDD-HHMMSS.json"`
 
 ⚙️ **Order of operations:**
 - **[1/3]** Load migration state file from 2_migrate_repo.ps1
 - **[2/3]** Validate each repository (ADO source and GitHub target)
 - **[3/3]** Update state file with validation results
-
-💻 **Script Usage:**
-- Automatically finds and uses the latest migration-state-comprehensive-*.json file:: `.\3_migration_validation.ps1`
-- Use this when you have multiple migration state files and want to validate a specific one from your migration: `.\3_migration_validation.ps1 -StateFile "migration-state-comprehensive-YYYYMMDD-HHMMSS.json"`
-
 
 **🗂️ Output Files generated:**
 - Updated state file with validation results (commit/branch counts from both systems): `migration-state-comprehensive-YYYYMMDD-HHMMSS.json`
@@ -505,18 +499,15 @@ This script generates a CSV file of mannequin users (placeholder accounts) that 
 - Repositories must be migrated first (run 2_migrate_repo.ps1)
 - migration-config.json configuration file
 
-
-⚙️ **Order of operations:**
-- **[1/3]** Validate GitHub PAT token
-- **[2/3]** Load configuration from `migration-config.json`
-- **[3/3]** Generate `mannequin.csv` using **gh ado2gh CLI**
-
-
 💻 **Script Usage:**
 - Uses settings from `migration-config.json` (default output: **mannequins.csv**): `.\4_generate_mannequins.ps1`
 - Use a custom configuration file: `.\4_generate_mannequins.ps1 [-ConfigPath "migration-config.json"]`
 - Generate **mannequins** to a custom CSV file location: `.\4_generate_mannequins.ps1 [-OutputCSV "custom-mannequins.csv"]`
 
+⚙️ **Order of operations:**
+- **[1/3]** Validate GitHub PAT token
+- **[2/3]** Load configuration from `migration-config.json`
+- **[3/3]** Generate `mannequin.csv` using **gh ado2gh CLI**
 
 **🗂️ Output Files generated:**
 - list of placeholder users requiring GitHub mapping: `mannequins.csv` 
@@ -534,19 +525,15 @@ This script reclaims **mannequin** users (placeholder accounts) by mapping them 
 - **Mannequins CSV** has been reviewed and updated with **target GitHub usernames**
 - **migration-config.json** exists with proper configuration
 
+💻 **Script Usage:**
+- Uses settings from **migration-config.json** (default input: mannequins.csv): `.\5_reclaim_mannequins.ps1`
+- Use a custom CSV file location instead of the default: `.\5_reclaim_mannequins.ps1 -MannequinsCSV "custom-mannequins.csv"`
 
 ⚙️ **Order of operations:**
 - [1/4] Validate **GitHub PAT** token
 - [2/4] Load migration configuration from `migration-config.json`
 - [3/4] Validate **mannequins CSV** file exists and contains data
 - [4/4] Execute mannequin reclaim using **gh ado2gh CLI**
-
-
-💻 **Script Usage:**
-- Uses settings from **migration-config.json** (default input: mannequins.csv): `.\5_reclaim_mannequins.ps1`
-- Use a custom CSV file location instead of the default: `.\5_reclaim_mannequins.ps1 -MannequinsCSV "custom-mannequins.csv"`
-
-
 
 **🗂️ Output Files generated:**
 - generated by 4_generate_mannequins.ps1, updated with target users: `mannequins.csv` 
@@ -566,6 +553,9 @@ This script **rewires Azure DevOps pipelines** to use the new **GitHub repositor
 - `pipelines.csv` from `0_Inventory.ps1`
 - `migration-config.json` exists with proper configuration
 
+💻 **Script Usage:**
+- finds the latest migration state file and uses default settings: `.\6_rewire_pipelines.ps1`
+- If you want to use a specific one state file: `.\6_rewire_pipelines.ps1 -StateFile "migration-state-YYYYMMDD-HHMMSS.json"`
 
 ⚙️ **Order of operations:**
 - [1/7] Validate PAT tokens (**ADO_PAT** and **GH_PAT**)
@@ -583,12 +573,6 @@ This script **rewires Azure DevOps pipelines** to use the new **GitHub repositor
   - Exclude **projects** with no connections or invalid credentials
 - [7/7] **Rewire pipelines** using project-specific service connections
 
-
-💻 **Script Usage:**
-- finds the latest migration state file and uses default settings: `.\6_rewire_pipelines.ps1`
-- If you want to use a specific one state file: `.\6_rewire_pipelines.ps1 -StateFile "migration-state-YYYYMMDD-HHMMSS.json"`
-
-
 **🗂️ Output Files generated:**
 - detailed rewiring log: `pipeline-rewiring-log-YYYYMMDD-HHMMSS.txt`
 
@@ -604,16 +588,16 @@ This script integrates **Azure Boards**  with the **migrated GitHub repositories
 - Repositories already migrated to GitHub
 - Proper **PAT** permissions for **Boards integration**
 
+💻 **Script Usage:**
+- Uses repos.csv from the current directory (generated by 0_Inventory.ps1): `.\7_integrate_boards.ps1`
+- Specify a different CSV file with repository information: `.\7_integrate_boards.ps1 -ReposFile "custom-repos.csv"`
+
 ⚙️ **Order of operations:**
 - **[1/5]** Validate PAT tokens (**ADO_PAT** and **GH_PAT**)
 - **[2/5]** Load repository inventory from `repos.csv` (source of truth)
 - **[3/5]** Check for existing **GitHub connections** (prevent VS403674 error)
 - **[4/5]** **Integrate boards** for each repository
 - **[5/5]** Generate integration **summary and log**
-
-💻 **Script Usage:**
-- Uses repos.csv from the current directory (generated by 0_Inventory.ps1): `.\7_integrate_boards.ps1`
-- Specify a different CSV file with repository information: `.\7_integrate_boards.ps1 -ReposFile "custom-repos.csv"`
 
 **🗂️ Output Files generated:**
 - detailed integration log: `boards-integration-log-YYYYMMDD-HHmmss.txt`
@@ -632,6 +616,10 @@ This script disables **Azure Devops repositories** after successful migration an
 - **GitHub CLI** with `gh-ado2gh` extension installed
 - `migration-config.json` configuration file
 
+💻 **Script Usage:**
+- finds the latest migration state file and uses default configuration: `.\8_disable_ado_repos.ps1`
+- provide a customer statefile: `.\8_disable_ado_repos.ps1 -StateFile "migration-state-20251027-124627.json"`
+- Specify a different `migration-config.json` file: `.\8_disable_ado_repos.ps1 -ConfigPath "custom-config.json"`
 
 ⚙️ **Order of operations:**
 - [1/4] Validate **ADO_PAT** and **GH_PAT** PAT tokens
@@ -642,12 +630,6 @@ This script disables **Azure Devops repositories** after successful migration an
   - Request explicit user confirmation
   - Disable each repository using `gh ado2gh disable-ado-repo`
   - Generate disable report
-
-💻 **Script Usage:**
-- finds the latest migration state file and uses default configuration: `.\8_disable_ado_repos.ps1`
-- provide a customer statefile: `.\8_disable_ado_repos.ps1 -StateFile "migration-state-20251027-124627.json"`
-- Specify a different `migration-config.json` file: `.\8_disable_ado_repos.ps1 -ConfigPath "custom-config.json"`
-
 
 **🗂️ Output Files generated:**
 - repository disable report with audit trail: `disable-report-YYYYMMDD-HHmmss.md`
