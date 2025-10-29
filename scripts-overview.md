@@ -16,24 +16,24 @@ This article marks the **first installment in a detailed series** introducing th
 
 ## 🗂️Table of Contents
 
-- 🧰[Prerequisites: Setting Up Your Environment](#prerequisites-setting-up-your-environment)
-- 🔐[Personal Access Token Scope Requirements](#personal-access-token-scope-requirements)
-- 🧭[Understanding the Migration Workflow](#understanding-the-migration-workflow)
-- ⚙️[Configuration File Setup](#configuration-file-setup)
-- ✅[Validating Your Setup](#validating-your-setup)
-- 🗂️[Script 0: Inventory Script (0_Inventory.ps1)](#script-0-inventory-script-0_inventoryps1)
-- 🔍[Script 1: Active Process Check (1_check_active_process.ps1)](#script-1-active-process-check-1_check_active_processps1)
-- 🚚[Script 2: Repository Migration (2_migrate_repo.ps1)](#script-2-repository-migration-2_migrate_repops1)
-- 🧾[Script 3: Migration Validation (3_migration_validation.ps1)](#script-3-migration-validation-3_migration_validationps1)
-- 🧍‍♂️[Script 4: Generate Mannequins (4_generate_mannequins.ps1)](#script-4-generate-mannequins-4_generate_mannequinsps1)
-- 🔁[Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)](#script-5-reclaim-mannequins-5_reclaim_mannequinsps1)
-- 🔗[Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)](#script-6-rewire-pipelines-6_rewire_pipelinesps1)
-- 📋[Script 7: Integrate Boards (7_integrate_boards.ps1)](#script-7-integrate-boards-7_integrate_boardsps1)
-- 🛑[Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)](#script-8-disable-ado-repositories-8_disable_ado_reposps1)
+- [Prerequisites: Setting Up Your Environment](#-prerequisites-setting-up-your-environment)
+- [Defining Personal Access Token Scopes](#-Defining-Personal-Access-Token-Scopes)
+- [Understanding the Migration Workflow](#-understanding-the-migration-workflow)
+- [Configuration File Setup](#-configuration-File-Setup)
+- [Validating Your Setup](#-validating-your-setup)
+- [Script 0: Inventory Script (0_Inventory.ps1)](#-script-0-inventory-script-0_inventoryps1)
+- [Script 1: Active Process Check (1_check_active_process.ps1)](#-script-1-active-process-check-1_check_active_processps1)
+- [Script 2: Repository Migration (2_migrate_repo.ps1)](#-script-2-repository-migration-2_migrate_repops1)
+- [Script 3: Migration Validation (3_migration_validation.ps1)](#-script-3-migration-validation-3_migration_validationps1)
+- [Script 4: Generate Mannequins (4_generate_mannequins.ps1)](#-script-4-generate-mannequins-4_generate_mannequinsps1)
+- [Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)](#-script-5-reclaim-mannequins-5_reclaim_mannequinsps1)
+- [Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)](#-script-6-rewire-pipelines-6_rewire_pipelinesps1)
+- [Script 7: Integrate Boards (7_integrate_boards.ps1)](#-script-7-integrate-boards-7_integrate_boardsps1)
+- [Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)](#-script-8-disable-ado-repositories-8_disable_ado_reposps1)
 
 ---
 
-## Prerequisites: Setting Up Your Environment
+## 🧰 Prerequisites: Setting Up Your Environment
 
 Before you can run any script in this migration suite, you need to ensure your environment is properly configured. This section covers all the tools, permissions, and configuration required.
 
@@ -134,7 +134,7 @@ gh extension upgrade --all
 
 ---
 
-### Personal Access Token Scope Requirements
+## 🔐 Defining Personal Access Token Scopes
 
 #### Azure DevOps Personal Access Token (ADO_PAT)
 
@@ -218,7 +218,7 @@ $env:GH_PAT
 
 ---
 
-### Configuration File Setup
+### ⚙️ Configuration File Setup
 
 The migration scripts use a centralized configuration file (`migration-config.json`) to manage settings consistently across all scripts.
 
@@ -281,7 +281,7 @@ Copy-Item migration-config.json.sample migration-config.json
 
 ---
 
-### Validating Your Setup
+### ✅ Validating Your Setup
 
 Before running the inventory script, validate that everything is configured correctly:
 
@@ -313,7 +313,7 @@ If all checks pass, you're ready to proceed! ✅
 
 ---
 
-## Understanding the Migration Workflow
+## 🧭 Understanding the Migration Workflow
 
 Before diving into the inventory script specifically, it's helpful to understand where it fits in the overall migration process.
 
@@ -343,7 +343,7 @@ Step 7: Integrate Boards (Optional Work Item Linking)
 Step 8: Disable ADO Repositories (Finalization)
 ```
 
-## Script 0: Inventory Script (0_Inventory.ps1)
+## 🧾 Script 0: Inventory Script (0_Inventory.ps1)
 📝 **Description:**
  
 This script generates an inventory report of Azure DevOps repositories at the organization level using the gh ado2gh CLI extension. This report is used to identify repositories for migration planning.
@@ -371,7 +371,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 - Enumerates all **pipeline**s associated with the **projects**: `pipelines.csv`
 
 
-## Script 1: Active Process Check (1_check_active_process.ps1)
+## 🧾 Script 1: Active Process Check (1_check_active_process.ps1)
 
 
 📝 **Description:** 
@@ -412,7 +412,7 @@ This script checks for active processes **(pipelines and PRs)** on ADO repositor
 *Displays output to the console (progress messages, results, summary)*
 
 
-## Script 2: Repository Migration (2_migrate_repo.ps1)
+## 🧾 Script 2: Repository Migration (2_migrate_repo.ps1)
 
 📝 **Description:** 
 
@@ -461,7 +461,7 @@ This script performs large-scale repository migration from Azure DevOps to GitHu
 - detailed CSV log with `MigrationId` and `GitHubRepoUrl` for analysis: `migration-log-YYYYMMDD-HHMMSS.csv` 
 
 
-## Script 3: Migration Validation (3_migration_validation.ps1)
+## 🧾 Script 3: Migration Validation (3_migration_validation.ps1)
 
 
 📝 **Description:** 
@@ -491,7 +491,7 @@ This script validates migrated repositories by retrieving data from both **ADO**
 - Timestamped log file (`validation-log-YYYYMMDD-HHmmss.txt`)
 
 
-## Script 4: Generate Mannequins (4_generate_mannequins.ps1)
+## 🧾 Script 4: Generate Mannequins (4_generate_mannequins.ps1)
 
 📝 **Description:** 
 
@@ -521,7 +521,7 @@ This script generates a CSV file of mannequin users (placeholder accounts) that 
 - list of placeholder users requiring GitHub mapping: `mannequins.csv` 
 
 
-## Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)
+## 🧾 Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)
 📝 **Description:** 
 
 This script reclaims **mannequin** users (placeholder accounts) by mapping them to actual **GitHub user accounts**. The **mannequins CSV** should be updated with target **GitHub usernames** before running this script.
@@ -552,7 +552,7 @@ This script reclaims **mannequin** users (placeholder accounts) by mapping them 
 - contains GitHub org and CSV path configuration: `migration-config.json`
 
 
-## Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)
+## 🧾 Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)
 📝 **Description:** 
 
 This script **rewires Azure DevOps pipelines** to use the new **GitHub repositories**. It reads pipeline inventory from `pipelines.csv` and updates **YAML pipelines** to point to the corresponding GitHub repositories using a service connection.
@@ -592,7 +592,7 @@ This script **rewires Azure DevOps pipelines** to use the new **GitHub repositor
 - detailed rewiring log: `pipeline-rewiring-log-YYYYMMDD-HHMMSS.txt`
 
 
-## Script 7: Integrate Boards (7_integrate_boards.ps1)
+## 🧾 Script 7: Integrate Boards (7_integrate_boards.ps1)
 📝 **Description:** 
 
 This script integrates **Azure Boards**  with the **migrated GitHub repositories**. It reads repository inventory from `repos.csv` and integrates each repository with **Azure Boards** for cross-platform **workItem** linking.
@@ -618,7 +618,7 @@ This script integrates **Azure Boards**  with the **migrated GitHub repositories
 - detailed integration log: `boards-integration-log-YYYYMMDD-HHmmss.txt`
 
 
-## Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)
+## 🧾 Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)
 📝 **Description:** 
 
 This script disables **Azure Devops repositories** after successful migration and validation. It prevents further changes to the source repositories.
