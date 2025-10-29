@@ -354,7 +354,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 - `migration-config.json` exists with proper configuration
 
 🎛️ **Input Parameters:**
-- 
+- `$ConfigPath` and `$AdoOrg` from `migration-config.json`
 
 ⚡ **Commands Used:**
 - GitHub CLI extension `gh ado2gh` : `gh ado2gh inventory-report --ado-org $AdoOrg`
