@@ -159,7 +159,6 @@ To generate the Azure DevOps inventory report, a PAT with full access or elevate
 - `Service Connections: Read & Query`
 - `Work Items: Read`
 
-
 **Creating the Token:**
 1. Navigate to Azure DevOps: `https://dev.azure.com/{your-org}`
 2. Click on **User Settings** (top-right) → **Personal Access Tokens**
@@ -216,6 +215,37 @@ $env:GH_PAT = "your-github-pat-token-here"
 $env:GH_PAT
 ```
 
+---
+
+## 🧭 Understanding the Migration Workflow
+
+Before diving into the inventory script specifically, it's helpful to understand where it fits in the overall migration process.
+
+**Insert the image???**
+
+### The Big Picture: 9-Step Migration Approach
+
+The **ADO to GitHub migration process** is structured as a **nine-step sequential workflow**, where each step builds upon the previous one to ensure a smooth and validated migration:
+
+```
+Step 0: Inventory Generation ← YOU ARE HERE
+    ↓
+Step 1: Active Process Check (Pre-Migration Validation)
+    ↓
+Step 2: Repository Migration (Parallel Execution)
+    ↓
+Step 3: Migration Validation (Post-Migration)
+    ↓
+Step 4: Generate Mannequins (Optional User Mapping)
+    ↓
+Step 5: Reclaim Mannequins (Optional User Attribution)
+    ↓
+Step 6: Rewire Pipelines (CI/CD Integration)
+    ↓
+Step 7: Integrate Boards (Optional Work Item Linking)
+    ↓
+Step 8: Disable ADO Repositories (Finalization)
+```
 ---
 
 ## ⚙️ Configuration File Setup
@@ -313,36 +343,6 @@ If all checks pass, you're ready to proceed! ✅
 
 ---
 
-## 🧭 Understanding the Migration Workflow
-
-Before diving into the inventory script specifically, it's helpful to understand where it fits in the overall migration process.
-
-**Insert the image???**
-
-### The Big Picture: 9-Step Migration Approach
-
-The **ADO to GitHub migration process** is structured as a **nine-step sequential workflow**, where each step builds upon the previous one to ensure a smooth and validated migration:
-
-```
-Step 0: Inventory Generation ← YOU ARE HERE
-    ↓
-Step 1: Active Process Check (Pre-Migration Validation)
-    ↓
-Step 2: Repository Migration (Parallel Execution)
-    ↓
-Step 3: Migration Validation (Post-Migration)
-    ↓
-Step 4: Generate Mannequins (Optional User Mapping)
-    ↓
-Step 5: Reclaim Mannequins (Optional User Attribution)
-    ↓
-Step 6: Rewire Pipelines (CI/CD Integration)
-    ↓
-Step 7: Integrate Boards (Optional Work Item Linking)
-    ↓
-Step 8: Disable ADO Repositories (Finalization)
-```
----
 ## 🧾 Script 0: Inventory Script (0_Inventory.ps1)
 
 📝 **Description:**
