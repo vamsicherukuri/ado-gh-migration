@@ -351,7 +351,6 @@ This script generates an inventory report of Azure DevOps repositories at the or
 
 🧰 **Prerequisites:**
 - **ADO_PAT** environment variable set with full access scope
-- **gh ado2gh CLI** extension installed
 - `migration-config.json` exists with proper configuration
 
 💻 **Script Usage:**
@@ -362,6 +361,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 ⚙️ **Order of operations:**
 - **[1/3]** Validate **ADO PAT** tokens.
 - **[2/3]** Load configuration from `migration-config.json` with parameter overrides
+  - Reads adoOrganization from config.scripts.inventory.adoOrg
 - **[3/3]** Generate inventory report using **gh ado2gh** CLI
 
 **🗂️ Output Files Generated:**
