@@ -10,7 +10,7 @@
 
 Migrating from **Azure DevOps (ADO)** to **GitHub Enterprise (GHE)** is a complex undertaking that requires careful planning, execution, and validation. While manual migration is possible for a handful of repositories, organizations with dozens or hundreds of repositories need an automated, repeatable, and traceable approach.
 
-This article marks the **first installment in a detailed series** introducing the **ADO2GH Migration PowerShell Scripts** - a **collection of modular automation scripts** purpose-built to simplify, orchestrate, and validate each stage of the migration journey, from initial preparation to final post-migration checks.
+This article introducing the **ADO2GH Migration PowerShell Scripts** - a **collection of modular automation scripts** purpose-built to simplify, orchestrate, and validate each stage of the migration journey, from initial preparation to final post-migration checks.
 
 ---
 
