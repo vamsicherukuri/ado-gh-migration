@@ -368,6 +368,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 - Captures all **team projects** within each organization: `team-projects.csv`
 - Lists all **repositories** (used as input for subsequent scripts): `repos.csv`
 - Enumerates all **pipeline**s associated with the **projects**: `pipelines.csv`
+- Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
 ## 🧾 Script 1: Active Process Check (1_check_active_process.ps1)
@@ -441,7 +442,8 @@ This script performs large-scale repository migration from Azure DevOps to GitHu
 
 **🗂️ Output Files generated:**
 - state file for automation and follow-up scripts: `migration-state-comprehensive-YYYYMMDD-HHMMSS.json`
-- detail CSV log with `MigrationId` and `GitHubRepoUrl` for analysis: `migration-log-YYYYMMDD-HHMMSS.csv` 
+- detail CSV log with `MigrationId` and `GitHubRepoUrl` for analysis: `migration-log-YYYYMMDD-HHMMSS.csv`
+- Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
 ## 🧾 Script 3: Migration Validation (3_migration_validation.ps1)
@@ -504,7 +506,8 @@ This script generates a CSV file of **mannequin users** (placeholder accounts) t
 - **[3/3]** Generate `mannequin.csv` using **gh ado2gh CLI**
 
 **🗂️ Output Files generated:**
-- list of placeholder users requiring GitHub mapping: cmannequins.csv` 
+- list of placeholder users requiring GitHub mapping: cmannequins.csv`
+- Each `gh ado2gh` command within the script produces detailed logs. 
 
 ---
 ## 🧾 Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)
@@ -531,6 +534,7 @@ This script reclaims **mannequin** users (placeholder accounts) by mapping them 
 
 **🗂️ Output Files generated:**
 - default verbose output file by the extension **ado2gh CLI**
+- Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
 ## 🧾 Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)
@@ -569,6 +573,7 @@ This script **rewires Azure DevOps pipelines** to use the new **GitHub repositor
 
 **🗂️ Output Files generated:**
 - detailed rewiring log: `pipeline-rewiring-log-YYYYMMDD-HHMMSS.txt`
+- Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
 ## 🧾 Script 7: Integrate Boards (7_integrate_boards.ps1)
@@ -596,6 +601,7 @@ This script integrates **Azure Boards**  with the **migrated GitHub repositories
 
 **🗂️ Output Files generated:**
 - detailed integration log: `boards-integration-log-YYYYMMDD-HHmmss.txt`
+- Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
 ## 🧾 Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)
@@ -627,5 +633,6 @@ This script disables **Azure Devops repositories** after successful migration an
 
 **🗂️ Output Files generated:**
 - repository disable report with audit trail: `disable-report-YYYYMMDD-HHmmss.md`
+- Each `gh ado2gh` command within the script produces detailed logs.
 
 
