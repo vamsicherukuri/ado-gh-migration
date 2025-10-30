@@ -14,11 +14,11 @@ This article introducing the **ADO2GH Migration PowerShell Scripts** - a **colle
 
 ## 🗂️Table of Contents
 
-- [Prerequisites: Setting Up Your Environment](#-prerequisites-setting-up-your-environment)
-- [Defining Personal Access Token Scopes](#-defining-personal-access-token-scopes)
-- [Understanding the Migration Workflow](#-understanding-the-migration-workflow)
+- [Prerequisites: Setting Up Your Environment](#prerequisites-setting-up-your-environment)
+- [Defining Personal Access Token Scopes](#defining-personal-access-token-scopes)
+- [Understanding the Migration Workflow](#understanding-the-migration-workflow)
 - [Configuration File Setup](#configuration-file-setup)
-- [Validating Your Setup](#-validating-your-setup)
+- [Validating Your Setup](#validating-your-setup)
 - 🧾[Script 0: Inventory Script (0_Inventory.ps1)](#-script-0-inventory-script-0_inventoryps1)
 - 🧾[Script 1: Active Process Check (1_check_active_process.ps1)](#-script-1-active-process-check-1_check_active_processps1)
 - 🧾[Script 2: Repository Migration (2_migrate_repo.ps1)](#-script-2-repository-migration-2_migrate_repops1)
