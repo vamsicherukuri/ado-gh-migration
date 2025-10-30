@@ -221,7 +221,7 @@ $env:GH_PAT
 
 Before diving into the inventory script specifically, it's helpful to understand where it fits in the overall migration process.
 
-**Insert the image???**
+![Alt text](./images/migration-workflow.png)
 
 ### The Big Picture: 9-Step Migration Approach
 
