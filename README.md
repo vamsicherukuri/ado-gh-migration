@@ -350,7 +350,7 @@ Copy-Item migration-config.json.sample migration-config.json
 
 ---
 
-## 🔍Verify Environment Setup
+## ✅Verify Environment Setup
 
 Before running the inventory script, validate that everything is configured correctly:
 
