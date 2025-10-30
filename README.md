@@ -32,7 +32,7 @@ This article introducing the **ADO2GH Migration PowerShell Scripts** - a **colle
 
 ---
 
-## 🧰 Prerequisites: Setting Up Your Environment
+## 🧰Prerequisites: Setting Up Your Environment
 
 Before you can run any script in this migration suite, you need to ensure your environment is properly configured. This section covers all the tools, permissions, and configuration required.
 
