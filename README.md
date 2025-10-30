@@ -17,7 +17,7 @@ This article introducing the **ADO2GH Migration PowerShell Scripts** - a **colle
 - [Prerequisites: Setting Up Your Environment](#-prerequisites-setting-up-your-environment)
 - [Defining Personal Access Token Scopes](#-defining-personal-access-token-scopes)
 - [Understanding the Migration Workflow](#-understanding-the-migration-workflow)
-- [Configuration File Setup](#-configuration-file-setup)
+- [Configuration File Setup](#-Configuration-File-Setup)
 - [Validating Your Setup](#-validating-your-setup)
 - 🧾[Script 0: Inventory Script (0_Inventory.ps1)](#-script-0-inventory-script-0_inventoryps1)
 - 🧾[Script 1: Active Process Check (1_check_active_process.ps1)](#-script-1-active-process-check-1_check_active_processps1)
@@ -227,6 +227,7 @@ Before jumping into the scripts, let’s walk through the migration workflow to 
 The **ADO to GitHub migration process** is structured as a **nine-step sequential workflow**, where each step builds upon the previous one to ensure a smooth and validated migration:
 
 ```
+
 ## 🔄 Script Sequence
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -285,6 +286,7 @@ Step 8: Disable ADO Repositories
          ├─ Disable each ADO repository
          └─ Generate disable report
 ```
+
 ---
 
 ## ⚙️ Configuration File Setup
