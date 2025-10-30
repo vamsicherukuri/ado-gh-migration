@@ -219,16 +219,16 @@ $env:GH_PAT
 
 ## 🧭 Understanding the Migration Workflow
 
-Before diving into the inventory script specifically, it's helpful to understand where it fits in the overall migration process.
+Before jumping into the scripts, let’s walk through the migration workflow to see how each step fits into the overall process.
 
 ![Alt text](./images/migration-workflow.png)
 
-### The Big Picture: 9-Step Migration Approach
+### Comprehensive 9-Step Migration Workflow
 
 The **ADO to GitHub migration process** is structured as a **nine-step sequential workflow**, where each step builds upon the previous one to ensure a smooth and validated migration:
 
 ```
-Step 0: Inventory Generation ← YOU ARE HERE
+Step 0: Inventory Generation (Planning)
     ↓
 Step 1: Active Process Check (Pre-Migration Validation)
     ↓
@@ -307,11 +307,11 @@ Copy-Item migration-config.json.sample migration-config.json
 | `githubOrganization` | Your target GitHub organization | `ADO2GH-Migration` |
 | `scripts.inventory.adoOrg` | ADO org for inventory generation | `contosodevopstest` |
 | `scripts.migrateRepo.maxConcurrentJobs` | Parallel migration limit | `4` (max 5 per GitHub) |
-| `scripts.migrateRepo.repoCSV` | Input CSV file for migration | `repos.csv` |
+| `scripts.migrateRepo.repoCSV` | Input CSV file for migration | `repos.csv` (from inventroy report) |
 
 ---
 
-## ✅ Validating Your Setup
+## ✍️ Validating Your Setup
 
 Before running the inventory script, validate that everything is configured correctly:
 
