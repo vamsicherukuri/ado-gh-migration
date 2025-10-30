@@ -134,7 +134,7 @@ gh extension upgrade --all
 
 ## 🔐 Defining Personal Access Token Scopes
 
-#### Azure DevOps Personal Access Token (ADO_PAT)
+#### Azure DevOps Personal Access Token
 
 The ADO_PAT token is used to authenticate with Azure DevOps and perform operations on repositories, pipelines, Azure Boards, Service connections and projects.
 
@@ -180,7 +180,7 @@ $env:ADO_PAT
 ⚠️ **Security Best Practice:** PAT tokens function much like passwords, so they must be handled and stored with extreme caution. 
 Never commit PAT tokens to version control. Always store them securely using a password manager, environment variable, or a secret management tool (such as Azure Key Vault or GitHub Secrets).
 
-#### GitHub Personal Access Token (GH_PAT)
+#### GitHub Personal Access Token
 
 The GH_PAT token authenticates with GitHub Enterprise and is required for organization-level operations.
 
@@ -305,7 +305,7 @@ Copy-Item migration-config.json.sample migration-config.json
 | `githubOrganization` | Your target GitHub organization | `ADO2GH-Migration` |
 | `scripts.inventory.adoOrg` | ADO org for inventory generation | `contosodevopstest` |
 | `scripts.migrateRepo.maxConcurrentJobs` | Parallel migration limit | `4` (max 5 per GitHub) |
-| `scripts.migrateRepo.repoCSV` | Input CSV file for migration | `repos.csv` (from inventroy report) |
+| `scripts.migrateRepo.repoCSV` | Input CSV file for migration | `repos.csv` (from inventory report) |
 
 ---
 
