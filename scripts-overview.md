@@ -221,28 +221,68 @@ Before jumping into the scripts, let’s walk through the migration workflow to 
 
 ![Alt text](./images/migration-workflow.png)
 
-### Comprehensive 9-Step Migration Workflow
+### Comprehensive Migration Workflow
 
 The **ADO to GitHub migration process** is structured as a **nine-step sequential workflow**, where each step builds upon the previous one to ensure a smooth and validated migration:
 
 ```
-Step 0: Inventory Generation (Planning)
-    ↓
-Step 1: Active Process Check (Pre-Migration Validation)
-    ↓
-Step 2: Repository Migration (Parallel Execution)
-    ↓
-Step 3: Migration Validation (Post-Migration)
-    ↓
-Step 4: Generate Mannequins (Optional User Mapping)
-    ↓
-Step 5: Reclaim Mannequins (Optional User Attribution)
-    ↓
-Step 6: Rewire Pipelines (CI/CD Integration)
-    ↓
-Step 7: Integrate Boards (Optional Work Item Linking)
-    ↓
-Step 8: Disable ADO Repositories (Finalization)
+## 🔄 Script Sequence
+
+┌─────────────────────────────────────────────────────────────┐
+│                  ADO to GitHub Migration Flow               │
+└─────────────────────────────────────────────────────────────┘
+
+Step 0: Generate Inventory
+         ├─ Scan ADO organization
+         ├─ Generate repos.csv, pieplines.csv, orgs.csv, team-project.csv
+                      ⬇️
+Step 1: Check Active Processes
+         ├─ Read from repos.csv OR use -Repository parameters
+         ├─ Check for in-progress pipelines per repo
+         ├─ Check for active pull requests per repo
+         └─ Generate ready/blocked repository report (CONSOLE OUTPUT ONLY)
+                      ⬇️
+         [MANUAL STEP: Filter repos.csv based on console output if needed]
+                      ⬇️
+Step 2: Migrate Repository (Parallel Execution)
+         ├─ Read from repos.csv input file 
+         ├─ Lock ADO repository
+         ├─ Execute migration to GitHub (parallel jobs)
+         ├─ Track success/failure per repository
+         └─ Generate migration state file
+                      ⬇️
+Step 3: Migration Validation
+         ├─ Read from migration state file
+         ├─ Validate ADO source (commits, branches)
+         ├─ Validate GitHub target (commits, branches)
+         ├─ Compare results
+         └─ Update state file with validation results
+                      ⬇️
+Step 4: Generate Mannequins
+         └─ Creates CSV of placeholder user accounts (org-wide)
+                      ⬇️
+Step 5: Reclaim Mannequins
+         └─ Map mannequins to actual GitHub users
+                      ⬇️
+Step 6: Rewire Pipelines
+         ├─ Read from migration state file (for repo mappings)
+         ├─ Read pipelines from pipelines.csv (PRIMARY INPUT)
+         ├─ Validate service connections per project
+         ├─ Skip Classic pipelines (manual rewiring required)
+         ├─ Skip already-rewired pipelines
+         └─ Rewire YAML pipelines to GitHub repos
+                      ⬇️
+Step 7: Integrate Boards
+         ├─ Read from repos.csv (PRIMARY INPUT)
+         ├─ Check for existing GitHub Boards connections
+         ├─ Skip projects with existing connections
+         └─ Integrate Azure Boards with GitHub repos
+                      ⬇️
+Step 8: Disable ADO Repositories
+         ├─ Read from migration state file
+         ├─ Confirm user intent
+         ├─ Disable each ADO repository
+         └─ Generate disable report
 ```
 ---
 
