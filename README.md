@@ -133,7 +133,7 @@ gh extension upgrade --all
 
 ---
 
-## 🔐 Defining Personal Access Token Scopes
+## 🔐Defining Personal Access Token Scopes
 
 #### Azure DevOps Personal Access Token
 
@@ -216,7 +216,7 @@ $env:GH_PAT
 
 ---
 
-## 🧭 Understanding the Migration Workflow
+## 🧭Understanding the Migration Workflow
 
 Before jumping into the scripts, let’s walk through the migration workflow to see how each step fits into the overall process.
 
@@ -289,7 +289,7 @@ Step 8: Disable ADO Repositories
 
 ---
 
-## ⚙️ Configuration File Setup
+## ⚙️Configuration File Setup
 
 The migration scripts use a centralized configuration file (`migration-config.json`) to manage settings consistently across all scripts.
 
@@ -352,7 +352,7 @@ Copy-Item migration-config.json.sample migration-config.json
 
 ---
 
-## ✍️ Validating Your Setup
+## ✍️Validating Your Setup
 
 Before running the inventory script, validate that everything is configured correctly:
 
@@ -384,7 +384,7 @@ If all checks pass, you're ready to proceed! ✅
 
 ---
 
-## 🧾 Script 0: Inventory Script (0_Inventory.ps1)
+## 🧾Script 0: Inventory Script (0_Inventory.ps1)
 
 📝 **Description:**
  
@@ -418,7 +418,7 @@ This script generates an inventory report of Azure DevOps repositories at the or
 - Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
-## 🧾 Script 1: Active Process Check (1_check_active_process.ps1)
+## 🧾Script 1: Active Process Check (1_check_active_process.ps1)
 
 
 📝 **Description:** 
@@ -457,7 +457,7 @@ This script checks for active processes **(pipelines and PRs)** on ADO repositor
 
 ---
 
-## 🧾 Script 2: Repository Migration (2_migrate_repo.ps1)
+## 🧾Script 2: Repository Migration (2_migrate_repo.ps1)
 
 📝 **Description:** 
 
@@ -511,7 +511,7 @@ This script performs large-scale repository migration from Azure DevOps to GitHu
 - Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
-## 🧾 Script 3: Migration Validation (3_migration_validation.ps1)
+## 🧾Script 3: Migration Validation (3_migration_validation.ps1)
 
 
 📝 **Description:** 
@@ -558,7 +558,7 @@ This script validates migrated repositories by retrieving data from both **ADO**
 - Timestamped log file: `validation-log-YYYYMMDD-HHmmss.txt`
 
 ---
-## 🧾 Script 4: Generate Mannequins (4_generate_mannequins.ps1)
+## 🧾Script 4: Generate Mannequins (4_generate_mannequins.ps1)
 
 📝 **Description:** 
 
@@ -593,7 +593,7 @@ This script generates a CSV file of **mannequin users** (placeholder accounts) t
 - Each `gh ado2gh` command within the script produces detailed logs. 
 
 ---
-## 🧾 Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)
+## 🧾Script 5: Reclaim Mannequins (5_reclaim_mannequins.ps1)
 📝 **Description:** 
 
 This script reclaims **mannequin** users (placeholder accounts) by mapping them to actual **GitHub user accounts**. The **mannequins CSV** should be updated with target **GitHub usernames** before running this script.
@@ -626,7 +626,7 @@ This script reclaims **mannequin** users (placeholder accounts) by mapping them 
 - Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
-## 🧾 Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)
+## 🧾Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)
 📝 **Description:** 
 
 This script **rewires Azure DevOps pipelines** to use the new **GitHub repositories**. It reads pipeline inventory from `pipelines.csv` and updates **YAML pipelines** to point to the corresponding GitHub repositories using a service connection.
@@ -673,7 +673,7 @@ This script **rewires Azure DevOps pipelines** to use the new **GitHub repositor
 - Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
-## 🧾 Script 7: Integrate Boards (7_integrate_boards.ps1)
+## 🧾Script 7: Integrate Boards (7_integrate_boards.ps1)
 📝 **Description:** 
 
 This script integrates **Azure Boards**  with the **migrated GitHub repositories**. It reads repository inventory from `repos.csv` and integrates each repository with **Azure Boards** for cross-platform **workItem** linking.
@@ -710,7 +710,7 @@ This script integrates **Azure Boards**  with the **migrated GitHub repositories
 - Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
-## 🧾 Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)
+## 🧾Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)
 📝 **Description:** 
 
 This script disables **Azure Devops repositories** after successful migration and validation. It prevents further changes to the source repositories.
@@ -750,7 +750,7 @@ This script disables **Azure Devops repositories** after successful migration an
 
 ---
 
-## ⚙️ Reconfigure your local repository
+## ⚙️Reconfigure your local repository
 
 After successfully migrating the repositories and completing all integrations, developers need to reconfigure their local repositories to point to the new GitHub repository as the remote origin. This can be done by running the commands below.
 
