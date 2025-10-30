@@ -454,6 +454,7 @@ This script checks for active processes **(pipelines and PRs)** on ADO repositor
 *Displays output to the console (progress messages, results, summary)*
 
 ---
+
 ## 🧾 Script 2: Repository Migration (2_migrate_repo.ps1)
 
 📝 **Description:** 
