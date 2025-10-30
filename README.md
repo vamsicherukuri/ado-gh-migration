@@ -749,7 +749,7 @@ This script disables **Azure Devops repositories** after successful migration an
 
 ---
 
-## ⚙️Reconfigure your local repository
+## 💻Reconfigure your local repository
 
 After successfully migrating the repositories and completing all integrations, developers need to reconfigure their local repositories to point to the new GitHub repository as the remote origin. This can be done by running the commands below.
 
