@@ -287,8 +287,7 @@ Step 8: Disable ADO Repositories
 ```
 
 ---
-
-## 🛠️Configure parameters in the config file
+## 🪛Configure parameters in the config file
 
 The migration scripts use a centralized configuration file (`migration-config.json`) to manage settings consistently across all scripts.
 
