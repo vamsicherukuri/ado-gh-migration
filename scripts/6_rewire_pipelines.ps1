@@ -34,26 +34,26 @@
 #   - pipelines.csv from 0_Inventory.ps1
 #   - migration-config.json exists with proper configuration
 #
-# Order of operations:
-# [1/7] Validate PAT tokens (ADO_PAT and GH_PAT)
-# [2/7] Load configuration from migration-config.json with parameter overrides
-# [3/7] Load migration state file with successfully migrated repositories
-# [4/7] Load pipeline inventory from pipelines.csv (source of truth)
-# [5/7] Process pipelines from inventory:
-#       - Query pipeline details (YAML vs Classic, already on GitHub)
-#       - Skip Classic pipelines (require manual rewiring)
-#       - Skip pipelines already rewired to GitHub
-#       - Map ADO repo to GitHub repo using migration state
-# [6/7] Validate service connections per project:
-#       - Query GitHub service connections for each project
-#       - Test connection authentication with dry-run
-#       - Exclude projects with no connections or invalid credentials
-# [7/7] Rewire pipelines using project-specific service connections
-#
 # Usage:
 #   .\6_rewire_pipelines.ps1
 #   .\6_rewire_pipelines.ps1 -StateFile "migration-state-YYYYMMDD-HHMMSS.json"
 #   .\6_rewire_pipelines.ps1 -ConfigPath "custom-config.json"
+#
+# Order of Operations:
+#   [1/7] Validate PAT tokens (ADO_PAT and GH_PAT)
+#   [2/7] Load configuration from migration-config.json with parameter overrides
+#   [3/7] Load migration state file with successfully migrated repositories
+#   [4/7] Load pipeline inventory from pipelines.csv (source of truth)
+#   [5/7] Process pipelines from inventory:
+#         - Query pipeline details (YAML vs Classic, already on GitHub)
+#         - Skip Classic pipelines (require manual rewiring)
+#         - Skip pipelines already rewired to GitHub
+#         - Map ADO repo to GitHub repo using migration state
+#   [6/7] Validate service connections per project:
+#         - Query GitHub service connections for each project
+#         - Test connection authentication with dry-run
+#         - Exclude projects with no connections or invalid credentials
+#   [7/7] Rewire pipelines using project-specific service connections
 #
 # Input Files:
 #   - migration-state-comprehensive-YYYYMMDD-HHMMSS.json (from 2_migrate_repo.ps1)

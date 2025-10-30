@@ -55,10 +55,12 @@ Step 0: Generate Inventory
          └─ Identify repositories for migration
                       ⬇️
 Step 1: Check Active Processes (Optional Pre-Check)
+         ├─ Read from repos.csv OR use -Repository parameters
          ├─ Check for in-progress pipelines per repo
          ├─ Check for active pull requests per repo
-         ├─ Generate ready/blocked repository report
-         └─ Export filtered repos.csv for migration
+         └─ Generate ready/blocked repository report (CONSOLE OUTPUT ONLY)
+                      ⬇️
+         [MANUAL STEP: Filter repos.csv based on console output if needed]
                       ⬇️
 Step 2: Migrate Repository (Parallel Execution)
          ├─ Read from repos.csv input file
@@ -81,15 +83,16 @@ Step 5: Reclaim Mannequins (Optional)
          └─ Map mannequins to actual GitHub users
                       ⬇️
 Step 6: Rewire Pipelines
-         ├─ Read from migration state file
-         ├─ Read pipelines from pipelines.csv
-         ├─ Check for service connections
-         ├─ Verify migrated repositories
-         └─ Rewire pipelines to GitHub repos
+         ├─ Read from migration state file (for repo mappings)
+         ├─ Read pipelines from pipelines.csv (PRIMARY INPUT)
+         ├─ Validate service connections per project
+         ├─ Skip Classic pipelines (manual rewiring required)
+         ├─ Skip already-rewired pipelines
+         └─ Rewire YAML pipelines to GitHub repos
                       ⬇️
 Step 7: Integrate Boards (Optional)
-         ├─ Read from repos.csv
-         ├─ Check for existing GitHub connections
+         ├─ Read from repos.csv (PRIMARY INPUT)
+         ├─ Check for existing GitHub Boards connections
          ├─ Skip projects with existing connections
          └─ Integrate Azure Boards with GitHub repos
                       ⬇️

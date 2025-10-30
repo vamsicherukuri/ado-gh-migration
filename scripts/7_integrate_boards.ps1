@@ -36,16 +36,16 @@
 #   - Repositories already migrated to GitHub
 #   - Proper PAT permissions for Boards integration
 #
-# Order of operations:
-# [1/5] Validate PAT tokens (ADO_PAT and GH_PAT)
-# [2/5] Load repository inventory from repos.csv (source of truth)
-# [3/5] Check for existing GitHub connections (prevent VS403674 error)
-# [4/5] Integrate boards for each repository
-# [5/5] Generate integration summary and log
-#
 # Usage:
 #   .\7_integrate_boards.ps1
-#   .\7_integrate_boards.ps1 -ReposFile "repos.csv"
+#   .\7_integrate_boards.ps1 -ReposFile "custom-repos.csv"
+#
+# Order of Operations:
+#   [1/5] Validate PAT tokens (ADO_PAT and GH_PAT)
+#   [2/5] Load repository inventory from repos.csv (source of truth)
+#   [3/5] Check for existing GitHub connections (prevent VS403674 error)
+#   [4/5] Integrate boards for each repository
+#   [5/5] Generate integration summary and log
 #
 # Input Files:
 #   - repos.csv (from 0_Inventory.ps1 - repository inventory)

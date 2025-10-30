@@ -23,27 +23,27 @@
 # ADO2GH Step 4: Generate Mannequins
 # 
 # Description:
-# This script generates a CSV file of mannequin users (placeholder accounts)
-# that were created during the migration process. This CSV is used in the
-# next step to reclaim and map these mannequins to actual GitHub users.
+#   This script generates a CSV file of mannequin users (placeholder accounts)
+#   that were created during the migration process. This CSV is used in the
+#   next step to reclaim and map these mannequins to actual GitHub users.
 #
 # Prerequisites:
-# - GH_PAT environment variable set (GitHub Personal Access Token)
-# - Repositories must be migrated first (run 2_migrate_repo.ps1)
-# - migration-config.json configuration file
-#
-# Order of operations:
-# [1/3] Validate GitHub PAT token
-# [2/3] Load configuration from migration-config.json
-# [3/3] Generate mannequin CSV using gh ado2gh CLI
+#   - GH_PAT environment variable set (GitHub Personal Access Token)
+#   - Repositories must be migrated first (run 2_migrate_repo.ps1)
+#   - migration-config.json configuration file
 #
 # Usage:
-# .\4_generate_mannequins.ps1
-# .\4_generate_mannequins.ps1 [-ConfigPath "migration-config.json"]
-# .\4_generate_mannequins.ps1 [-OutputCSV "custom-mannequins.csv"]
+#   .\4_generate_mannequins.ps1
+#   .\4_generate_mannequins.ps1 [-ConfigPath "migration-config.json"]
+#   .\4_generate_mannequins.ps1 [-OutputCSV "custom-mannequins.csv"]
+#
+# Order of operations:
+#   [1/3] Validate GitHub PAT token
+#   [2/3] Load configuration from migration-config.json
+#   [3/3] Generate mannequin CSV using gh ado2gh generate-mannequin-csv
 #
 # Output Files:
-# - mannequins.csv (list of placeholder users requiring GitHub mapping)
+#   - mannequins.csv (list of placeholder users requiring GitHub mapping)
 
 param(
     [string]$ConfigPath = "migration-config.json",

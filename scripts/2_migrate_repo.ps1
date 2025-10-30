@@ -23,29 +23,30 @@
 # ADO2GH Repository Migration Script
 # 
 # Description:
-# This script performs large-scale repository migration from Azure DevOps to GitHub Enterprise
-# with parallel processing and state tracking. It migrates repositories in batches while 
-# maintaining detailed logs for follow-up actions.
+#   This script performs large-scale repository migration from Azure DevOps to GitHub Enterprise
+#   with parallel processing and state tracking. It migrates repositories in batches while 
+#   maintaining detailed logs for follow-up actions.
 # 
-# Order of operations:
-# [1/5] Validate PAT tokens (ADO_PAT and GH_PAT environment variables)
-# [2/5] Load configuration from migration-config.json with parameter overrides
-# [3/5] Load repository data from CSV file with required columns
-# [4/5] Execute batched migrations (respects GitHub's 5 concurrent migration limit)
-# [5/5] Generate state file and display summary with next steps
-#
 # Prerequisites: 
-# - CSV file with columns: org, teamproject, repo, ghorg, ghrepo
-# - migration-config.json configuration file
+#   - Set the ADO_PAT and GH_PAT environment variables with their respective Personal Access Tokens.
+#   - migration-config.json configuration file
+#   - CSV file with columns: org, teamproject, repo, ghorg, ghrepo
 #
 # Usage: 
-# .\2_migrate_repo.ps1
-# .\2_migrate_repo.ps1 [-RepoCSV "repos.csv"]
-# .\2_migrate_repo.ps1 [-MaxParallelJobs 3]  # Reduce concurrent migrations
+#   .\2_migrate_repo.ps1
+#   .\2_migrate_repo.ps1 [-RepoCSV "repos.csv"]
+#   .\2_migrate_repo.ps1 [-MaxParallelJobs 3]  # Reduce concurrent migrations
+#
+# Order of operations:
+#   [1/5] Validate PAT tokens (ADO_PAT and GH_PAT environment variables)
+#   [2/5] Load configuration from migration-config.json with parameter overrides
+#   [3/5] Load repository data from CSV file with required columns
+#   [4/5] Execute batched migrations (respects GitHub's 5 concurrent migration limit)
+#   [5/5] Generate state file and display summary with next steps
 # 
 # Output Files:
-# - migration-state-comprehensive-YYYYMMDD-HHMMSS.json (state file for automation and follow-up scripts)
-# - migration-log-YYYYMMDD-HHMMSS.csv (detailed CSV log with MigrationId and GitHubRepoUrl for analysis)
+#   - migration-state-comprehensive-YYYYMMDD-HHMMSS.json (state file for automation and follow-up scripts)
+#   - migration-log-YYYYMMDD-HHMMSS.csv (detailed CSV log with MigrationId and GitHubRepoUrl for analysis)
 
 param(
     [string]$ConfigPath = "migration-config.json",

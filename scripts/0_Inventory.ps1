@@ -29,18 +29,17 @@
 #
 # Prerequisites:
 #   - ADO_PAT environment variable set with full access scope
-#   - GH_PAT environment variable set (GitHub Personal Access Token)
-#   - gh ado2gh CLI extension installed
 #   - migration-config.json exists with proper configuration
 #
 # Order of operations:
-# [1/3] Validate PAT tokens (ADO_PAT and GH_PAT)
-# [2/3] Load configuration from migration-config.json with parameter overrides
-# [3/3] Generate inventory report using gh ado2gh CLI
+# [1/3] Validate ADO PAT tokens
+# [2/3] Load configuration from migration-config.json
+#       - Reads adoOrganization from config.scripts.inventory.adoOrg
+# [3/3] Generate inventory report using gh ado2gh inventory-report
+#       - Creates CSV files in current directory
 #
 # Usage:
 #   .\0_Inventory.ps1
-#   .\0_Inventory.ps1 -AdoOrg "your-ado-org"
 #   .\0_Inventory.ps1 -ConfigPath "custom-config.json"
 #
 # Output Files:
@@ -48,7 +47,6 @@
 #   - team-projects.csv (list of team projects)
 #   - repos.csv (list of repositories - used by subsequent scripts)
 #   - pipelines.csv (list of pipelines)
-#   - mannequins.csv (list of user mappings needed)
 
 param(
     [string]$ConfigPath = "migration-config.json",
@@ -98,7 +96,6 @@ Write-Host "   - orgs.csv (ADO organizations)" -ForegroundColor White
 Write-Host "   - team-projects.csv (Team projects)" -ForegroundColor White
 Write-Host "   - repos.csv (Repositories - used by migration scripts)" -ForegroundColor White
 Write-Host "   - pipelines.csv (Pipelines)" -ForegroundColor White
-Write-Host "   - mannequins.csv (User mappings)" -ForegroundColor White
 
 Write-Host "`n📋 NEXT STEPS:" -ForegroundColor Cyan
 Write-Host "   1. Review the generated CSV files" -ForegroundColor White

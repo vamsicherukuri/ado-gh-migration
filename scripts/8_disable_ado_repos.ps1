@@ -22,18 +22,39 @@
 
 # ADO2GH Step 8: Disable ADO Repositories
 # 
-# This script disables ADO repositories after successful migration and validation.
-# It prevents further changes to the source repositories.
+# Description:
+#   This script disables ADO repositories after successful migration and validation.
+#   It prevents further changes to the source repositories by marking them as disabled.
+#   This is the FINAL step in the migration process and is DESTRUCTIVE.
 #
 # Prerequisites:
-# - Repositories must be successfully migrated (Step 2)
-# - Repositories must be validated (Step 3)
-# - Migration state file must exist
+#   - ADO_PAT and GH_PAT environment variables set
+#   - Repositories must be successfully migrated (Step 2 - 2_migrate_repo.ps1)
+#   - Repositories must be validated (Step 3 - 3_migration_validation.ps1)
+#   - Migration state file from 2_migrate_repo.ps1 must exist
+#   - migration-config.json configuration file
+#
+# Usage:
+#   .\8_disable_ado_repos.ps1
+#   .\8_disable_ado_repos.ps1 -StateFile "migration-state-20251027-124627.json"
+#   .\8_disable_ado_repos.ps1 -ConfigPath "custom-config.json"
+#
+# Order of Operations:
+#   [1/4] Validate PAT tokens (ADO_PAT and GH_PAT)
+#   [2/4] Load configuration from migration-config.json with parameter overrides
+#   [3/4] Load repository information from migration state file
+#   [4/4] Disable ADO repositories (with user confirmation)
+#         - Display warning about destructive operation
+#         - Request explicit user confirmation
+#         - Disable each repository using gh ado2gh disable-ado-repo
+#         - Generate disable report
+#
+# Input Files:
+#   - migration-state-comprehensive-YYYYMMDD-HHMMSS.json (from 2_migrate_repo.ps1)
+#   - migration-config.json (contains configuration paths)
 #
 # Output Files:
-# - disable-report-YYYYMMDD-HHmmss.md (repository disable report)
-#
-# Usage: .\8_disable_ado_repos.ps1 [-StateFile "migration-state-XXX.json"]
+#   - disable-report-YYYYMMDD-HHmmss.md (repository disable report with audit trail)
 
 param(
     [string]$ConfigPath = "migration-config.json",
