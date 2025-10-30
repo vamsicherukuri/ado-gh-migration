@@ -215,7 +215,6 @@ $env:GH_PAT
 ```
 
 ---
-
 ## 🧭Understanding the Migration Workflow
 
 Before jumping into the scripts, let’s walk through the migration workflow to see how each step fits into the overall process.
@@ -710,6 +709,7 @@ This script integrates **Azure Boards**  with the **migrated GitHub repositories
 - Each `gh ado2gh` command within the script produces detailed logs.
 
 ---
+
 ## 🧾Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)
 📝 **Description:** 
 
