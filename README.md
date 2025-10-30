@@ -28,6 +28,7 @@ This article introducing the **ADO2GH Migration PowerShell Scripts** - a **colle
 - 🧾[Script 6: Rewire Pipelines (6_rewire_pipelines.ps1)](#-script-6-rewire-pipelines-6_rewire_pipelinesps1)
 - 🧾[Script 7: Integrate Boards (7_integrate_boards.ps1)](#-script-7-integrate-boards-7_integrate_boardsps1)
 - 🧾[Script 8: Disable ADO Repositories (8_disable_ado_repos.ps1)](#-script-8-disable-ado-repositories-8_disable_ado_reposps1)
+- [Reconfigure your local repository](#-reconfigure-your-local-repository)
 
 ---
 
@@ -743,5 +744,18 @@ This script disables **Azure Devops repositories** after successful migration an
 **🗂️ Output Files generated:**
 - repository disable report with audit trail: `disable-report-YYYYMMDD-HHmmss.md`
 - Each `gh ado2gh` command within the script produces detailed logs.
+
+---
+
+## ⚙️ Reconfigure your local repository
+
+After successfully migrating the repositories and completing all integrations, developers need to reconfigure their local repositories to point to the new GitHub repository as the remote origin. This can be done by running the commands below.
+
+- Check your curent remotes with: `git remote -v`
+- Change the remote URL for the origin remote to the GitHub repository using this command: `git remote set-url origin <GitHub_repository_URL>`
+- The command used to list all the remote branches available in the remote repository named origin: `git ls-remote --heads origin`
+
+
+
 
 
