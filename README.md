@@ -17,7 +17,7 @@ This article introducing the **ADO2GH Migration PowerShell Scripts** - a **colle
 - [Prerequisites: Setting Up Your Environment](#prerequisites-setting-up-your-environment)
 - [Defining Personal Access Token Scopes](#defining-personal-access-token-scopes)
 - [Understanding the Migration Workflow](#understanding-the-migration-workflow)
-- [Configuration File Setup](#configuration-file-setup)
+- [Configure parameters in the config file](#configure-parameters-in-the-config-file)
 - [Validating Your Setup](#validating-your-setup)
 - 🧾[Script 0: Inventory Script (0_Inventory.ps1)](#script-0-inventory-script-0_inventoryps1)
 - 🧾[Script 1: Active Process Check (1_check_active_process.ps1)](#script-1-active-process-check-1_check_active_processps1)
@@ -288,7 +288,7 @@ Step 8: Disable ADO Repositories
 
 ---
 
-## ⚙️Configuration File Setup
+## ⚙️Configure parameters in the config file
 
 The migration scripts use a centralized configuration file (`migration-config.json`) to manage settings consistently across all scripts.
 
