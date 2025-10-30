@@ -1,8 +1,6 @@
-# 🚀Automating Azure DevOps to GitHub Enterprise Migration Using ADO2GH extension
+# 🚀# Azure DevOps to GitHub Enterprise Migration Using ADO2GH Extension
 
-
-
-*Published: October 29, 2025*
+*Published: October 30, 2025*
 
 ---
 
