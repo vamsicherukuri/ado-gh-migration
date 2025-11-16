@@ -61,6 +61,52 @@ Import-Module "$scriptPath\MigrationHelpers.psm1" -Force -ErrorAction Stop
 # Global variable for tracking start time
 $Global:MigrationStartTime = Get-Date
 
+# Ensure main branch naming on migrated GitHub repo
+function Ensure-MainBranch {
+    param(
+        [Parameter(Mandatory)][string]$GitHubOrg,
+        [Parameter(Mandatory)][string]$GitHubRepo
+    )
+    $fullName = "$GitHubOrg/$GitHubRepo"
+    try {
+        # Determine existing default branch
+        $defaultBranch = gh repo view $fullName --json defaultBranchRef -q ".defaultBranchRef.name" 2>$null
+        $masterExists = $false
+        $mainExists = $false
+
+        gh api repos/$fullName/branches/master 1>$null 2>$null; if ($LASTEXITCODE -eq 0) { $masterExists = $true }
+        gh api repos/$fullName/branches/main 1>$null 2>$null; if ($LASTEXITCODE -eq 0) { $mainExists = $true }
+
+        if ($masterExists -and -not $mainExists) {
+            Write-Host "    ↪ Renaming branch 'master' to 'main' for $fullName" -ForegroundColor Yellow
+            gh api -X POST repos/$fullName/branches/master/rename -f new_name=main 1>$null 2>$null
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "    ✅ Renamed 'master' -> 'main'" -ForegroundColor Green
+                return [PSCustomObject]@{ BranchAction = 'RenamedMasterToMain'; DefaultBranch = 'main' }
+            } else {
+                Write-Host "    ❌ Failed to rename 'master' to 'main'" -ForegroundColor Red
+                return [PSCustomObject]@{ BranchAction = 'RenameFailed'; DefaultBranch = $defaultBranch }
+            }
+        } elseif ($masterExists -and $mainExists -and $defaultBranch -eq 'master') {
+            Write-Host "    ↪ Setting default branch to 'main' for $fullName" -ForegroundColor Yellow
+            gh api -X PATCH repos/$fullName -f default_branch=main 1>$null 2>$null
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "    ✅ Default branch set to 'main'" -ForegroundColor Green
+                return [PSCustomObject]@{ BranchAction = 'DefaultChangedToMain'; DefaultBranch = 'main' }
+            } else {
+                Write-Host "    ❌ Failed to set default branch to 'main'" -ForegroundColor Red
+                return [PSCustomObject]@{ BranchAction = 'DefaultChangeFailed'; DefaultBranch = $defaultBranch }
+            }
+        } else {
+            Write-Host "    ℹ Branch naming already compliant for $fullName (default: $defaultBranch)" -ForegroundColor Gray
+            return [PSCustomObject]@{ BranchAction = 'NoChange'; DefaultBranch = $defaultBranch }
+        }
+    } catch {
+        Write-Host "    ⚠ Unexpected error ensuring main branch: $($_.Exception.Message)" -ForegroundColor DarkYellow
+        return [PSCustomObject]@{ BranchAction = 'Error'; DefaultBranch = $null }
+    }
+}
+
 # Generate state file
 function Export-MigrationState {
     param(
@@ -391,6 +437,10 @@ while ($activeMigrations.Count -gt 0 -or $pendingRepos.Count -gt 0) {
             
             if ($result.Status -eq "Success") {
                 Write-Host "✅ [$($result.JobId)] $($result.GitHubRepository) completed in $($result.Duration)" -ForegroundColor Green
+                # Ensure branch naming compliance (main instead of master)
+                $branchOutcome = Ensure-MainBranch -GitHubOrg $result.GitHubOrganization -GitHubRepo $result.GitHubRepository
+                $result | Add-Member -MemberType NoteProperty -Name BranchAction -Value $branchOutcome.BranchAction -Force
+                $result | Add-Member -MemberType NoteProperty -Name FinalDefaultBranch -Value $branchOutcome.DefaultBranch -Force
             } else {
                 Write-Host "❌ [$($result.JobId)] $($result.GitHubRepository) failed: $($result.ErrorMessage)" -ForegroundColor Red
             }

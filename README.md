@@ -1,6 +1,6 @@
 # 🚀Orchestrating Azure DevOps to GitHub Enterprise Migration Using ADO2GH Extension
 
-*Published: October 30, 2025*
+*Published: November 16, 2025*
 
 ---
 
@@ -169,7 +169,7 @@ To generate the Azure DevOps inventory report, a PAT with full access or elevate
 **Setting the Environment Variable:**
 ```powershell
 # Windows PowerShell (current session)
-$env:ADO_PAT = "your-ado-pat-token-here"
+$env:ADO_PAT="your-ado-pat-token-here"
 
 # Windows PowerShell (persistent)
 [System.Environment]:SetEnvironmentVariable('ADO_PAT', 'your-ado-pat-token-here', 'User')
@@ -205,7 +205,7 @@ The GH_PAT token authenticates with GitHub Enterprise and is required for organi
 **Setting the Environment Variable:**
 ```powershell
 # Windows PowerShell (current session)
-$env:GH_PAT = "your-github-pat-token-here"
+$env:GH_PAT="your-github-pat-token-here"
 
 # Windows PowerShell (persistent)
 [System.Environment]:SetEnvironmentVariable('GH_PAT', 'your-github-pat-token-here', 'User')
@@ -219,16 +219,66 @@ $env:GH_PAT
 
 Before jumping into the scripts, let’s walk through the migration workflow to see how each step fits into the overall process.
 
-![Alt text](./images/migration-workflow.png)
+
+```mermaid
+
+flowchart LR
+
+%% -------- Row 1 (top) --------
+subgraph Row_1[ ]
+  direction LR
+
+  subgraph S1["Prerequisites"]
+    B1["• Install required tools<br/>• Configure environment<br/>• Set up credentials"]
+  end
+
+  subgraph S2["Planning"]
+    B2["• Inventory repositories<br/>• Check active processes<br/>• Prepare migration plan"]
+  end
+
+  subgraph S3["Migration"]
+    B3["• Lock ADO repositories<br/>• Execute migration jobs<br/>• Track migration status"]
+  end
+end
+
+%% -------- Row 2 (bottom) --------
+subgraph Row_2[ ]
+
+  subgraph S4["Post Migration Validation"]
+    B4["• Validate commits<br/>• Validate branches<br/>• Compare results"]
+  end
+
+  subgraph S5["ADO to GHE Integration"]
+    B5["• Generate mannequins<br/>• Reclaim mannequins<br/>• Rewire pipelines<br/>• Integrate boards"]
+  end
+
+  subgraph S6["Post Integration Validation"]
+    B6["• Verify pipeline connectivity<br/>• Test board integration<br/>• Confirm user mappings"]
+  end
+end
+
+%% Logical flows
+S1 --> S2 --> S3
+S4 --> S5 --> S6
+S3 --> S4
+Row_2 --- Row_1
+    style S1 fill:#2196F3,color:#FFF
+    style S2 fill:#2196F3,color:#FFF
+    style S3 fill:#2196F3,color:#FFF
+    style S4 fill:#2196F3,color:#FFF
+    style S5 fill:#2196F3,color:#FFF
+    style S6 fill:#2196F3,color:#FFF
+
+```
+
+
 
 ### Comprehensive Migration Workflow
 
 The **ADO to GitHub migration process** is structured as a **nine-step sequential workflow**, where each step builds upon the previous one to ensure a smooth and validated migration:
 
-```
-
 ## 🔄 Script Sequence
-
+```
 ┌─────────────────────────────────────────────────────────────┐
 │                  ADO to GitHub Migration Flow               │
 └─────────────────────────────────────────────────────────────┘

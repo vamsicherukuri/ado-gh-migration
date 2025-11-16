@@ -54,3 +54,8 @@ $RECYCLE.BIN/
 *.tmp
 *.temp
 ~$*
+
+# Ignore all the files created in the process of migration
+*.csv
+*.txt
+*.log

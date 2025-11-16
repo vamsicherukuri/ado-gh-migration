@@ -37,6 +37,8 @@
 #       - Reads adoOrganization from config.scripts.inventory.adoOrg
 # [3/3] Generate inventory report using gh ado2gh inventory-report
 #       - Creates CSV files in current directory
+# [4/4] Add GitHub organization columns to repos.csv
+#       - Adds ghorg and ghrepo columns
 #
 # Usage:
 #   .\0_Inventory.ps1
@@ -62,11 +64,11 @@ Write-Host "  Step 0: Generate Inventory Report" -ForegroundColor Cyan
 Write-Host "========================================`n" -ForegroundColor Cyan
 
 # 1. Validate PAT tokens
-Write-Host "[1/3] Validating PAT tokens..." -ForegroundColor Yellow
+Write-Host "[1/4] Validating PAT tokens..." -ForegroundColor Yellow
 if (!(Test-RequiredPATs)) { exit 1 }
 
 # 2. Load configuration
-Write-Host "`n[2/3] Loading configuration..." -ForegroundColor Yellow
+Write-Host "`n[2/4] Loading configuration..." -ForegroundColor Yellow
 $config = Get-MigrationConfig -ConfigPath $ConfigPath
 if (!$config) { exit 1 }
 
@@ -74,7 +76,7 @@ $AdoOrg = $config.scripts.inventory.adoOrg
 Write-Host "ADO Organization: $AdoOrg" -ForegroundColor Gray
 
 # 3. Generate inventory report
-Write-Host "`n[3/3] Generating inventory report..." -ForegroundColor Yellow
+Write-Host "`n[3/4] Generating inventory report..." -ForegroundColor Yellow
 Write-Host "   This may take several minutes depending on organization size..." -ForegroundColor Gray
 
 gh ado2gh inventory-report --ado-org $AdoOrg
@@ -85,7 +87,19 @@ if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }
 
+
 Write-Host "`n✅ Inventory report generated successfully!" -ForegroundColor Green
+
+# Add GitHub organization columns to repos.csv
+Write-Host "`n[4/4] Adding GitHub organization columns to repos.csv..." -ForegroundColor Yellow
+
+try {
+    Add-GitHubColumnsToReposCSV -ConfigPath $ConfigPath
+}
+catch {
+    Write-Host "❌ Failed to add GitHub columns: $_" -ForegroundColor Red
+    exit 1
+}
 
 Write-Host "`n========================================" -ForegroundColor Cyan
 Write-Host "  Inventory Report Complete" -ForegroundColor Cyan
