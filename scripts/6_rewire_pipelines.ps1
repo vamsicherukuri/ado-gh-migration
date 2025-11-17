@@ -300,7 +300,7 @@ foreach ($projectGroup in $projectsNeedingRewire) {
     Write-Host "`n   📂 Checking project: $projectName" -ForegroundColor Cyan
     
     try {
-        $serviceConnections = Get-ProjectServiceConnections -AdoOrg $ADO_ORG -ProjectName $projectName
+        $serviceConnections = Get-ProjectServiceConnections -AdoOrg $ADO_ORG -ProjectName $projectName -ConnectionTypes @('github')
         
         if ($null -eq $serviceConnections -or $serviceConnections.Count -eq 0) {
             Write-Host "      ⚠️  No GitHub service connections found" -ForegroundColor Yellow

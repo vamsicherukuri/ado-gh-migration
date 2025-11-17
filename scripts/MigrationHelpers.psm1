@@ -224,7 +224,7 @@ function Get-ProjectServiceConnections {
         $connections = az devops service-endpoint list `
             --org "https://dev.azure.com/$AdoOrg" `
             --project "$ProjectName" `
-            --query "[?$typeFilter].{name:name, id:id, type:type, isReady:isReady, url:url}" `
+            --query "[?$($typeFilter)].{name:name, id:id, type:type, isReady:isReady, url:url}" `
             -o json 2>$null | ConvertFrom-Json
         
         return $connections
@@ -283,6 +283,123 @@ function New-RepositoryMapping {
 }
 
 # ========================================
+# 6. GitHub Columns Augmentation
+# ========================================
+
+<#
+.SYNOPSIS
+    Adds GitHub organization and repository columns to repos.csv
+
+.DESCRIPTION
+    Reads the repos.csv file and adds two new columns:
+    - ghorg: The GitHub organization from migration-config.json
+    - ghrepo: The repository name (same as the repo column value)
+    Provides fallback path resolution if files are not found in the script directory.
+
+.PARAMETER RepoCSVPath
+    Path to the repos.csv file. Defaults to repos.csv in the scripts directory.
+
+.PARAMETER ConfigPath
+    Path to the migration-config.json file. Defaults to migration-config.json in the scripts directory.
+
+.PARAMETER OutputPath
+    Path where the modified CSV will be saved. If not specified, overwrites the original file.
+
+.EXAMPLE
+    Add-GitHubColumnsToReposCSV
+
+.EXAMPLE
+    Add-GitHubColumnsToReposCSV -RepoCSVPath ".\repos.csv" -ConfigPath ".\migration-config.json"
+#>
+function Add-GitHubColumnsToReposCSV {
+    [CmdletBinding()]
+    param(
+        [Parameter()]
+        [string]$RepoCSVPath = (Join-Path $PSScriptRoot "repos.csv"),
+
+        [Parameter()]
+        [string]$ConfigPath = (Join-Path $PSScriptRoot "migration-config.json"),
+
+        [Parameter()]
+        [string]$OutputPath = $null
+    )
+
+    try {
+        # Check if files exist (with fallback to current working directory)
+        if (-not (Test-Path $RepoCSVPath)) {
+            $altRepo = Join-Path (Get-Location) (Split-Path $RepoCSVPath -Leaf)
+            if (Test-Path $altRepo) {
+                Write-Host "   repos.csv not found at default; using $altRepo" -ForegroundColor DarkYellow
+                $RepoCSVPath = $altRepo
+            } else {
+                throw "repos.csv file not found at: $RepoCSVPath or $altRepo"
+            }
+        }
+
+        if (-not (Test-Path $ConfigPath)) {
+            $altConfig = Join-Path (Get-Location) (Split-Path $ConfigPath -Leaf)
+            if (Test-Path $altConfig) {
+                Write-Host "   migration-config.json not found at default; using $altConfig" -ForegroundColor DarkYellow
+                $ConfigPath = $altConfig
+            } else {
+                throw "migration-config.json file not found at: $ConfigPath or $altConfig"
+            }
+        }
+
+        # Read the migration config to get GitHub organization
+        Write-Host "   Reading migration configuration..." -ForegroundColor Gray
+        $config = Get-Content -Path $ConfigPath -Raw | ConvertFrom-Json
+        $githubOrg = $config.githubOrganization
+
+        if ([string]::IsNullOrWhiteSpace($githubOrg)) {
+            throw "GitHub organization not found in migration-config.json"
+        }
+
+        Write-Host "   GitHub Organization: $githubOrg" -ForegroundColor Gray
+
+        # Read the repos CSV
+        $repos = Import-Csv -Path $RepoCSVPath
+
+        if ($repos.Count -eq 0) {
+            throw "No repositories found in repos.csv"
+        }
+
+        Write-Host "   Processing $($repos.Count) repositories..." -ForegroundColor Gray
+
+        # Add the new columns
+        $updatedRepos = $repos | ForEach-Object {
+            $_ | Add-Member -MemberType NoteProperty -Name "ghorg" -Value $githubOrg -Force
+            $_ | Add-Member -MemberType NoteProperty -Name "ghrepo" -Value $_.repo -Force
+            $_
+        }
+
+        # Determine output path
+        if ([string]::IsNullOrWhiteSpace($OutputPath)) {
+            $OutputPath = $RepoCSVPath
+        }
+
+        # Export the updated CSV
+        $updatedRepos | Export-Csv -Path $OutputPath -NoTypeInformation -Force
+        Write-Host "   Output written to: $OutputPath" -ForegroundColor Gray
+        Write-Host "   ✅ Added ghorg and ghrepo columns to repos.csv" -ForegroundColor Green
+        Write-Host ""
+            Write-Host "ℹ️  Default mapping applied:" -ForegroundColor Cyan
+            Write-Host "   • ghorg: $githubOrg (from migration-config.json)" -ForegroundColor Gray
+            Write-Host "   • ghrepo: Same as ADO repository name" -ForegroundColor Gray
+            Write-Host ""
+            Write-Host "⚠️  Please verify this mapping is correct for your migration needs!" -ForegroundColor Yellow
+            Write-Host "   If you need different GitHub repository names, edit the 'ghrepo' column in $OutputPath" -ForegroundColor Yellow
+            Write-Host "   before proceeding with the migration." -ForegroundColor Yellow
+            Write-Host ""
+        return $updatedRepos
+    }
+    catch {
+        Write-Host "   ❌ Failed to update repos.csv: $_" -ForegroundColor Red
+        throw
+    }
+}
+
+# ========================================
 # Module Exports
 # ========================================
 
@@ -291,5 +408,6 @@ Export-ModuleMember -Function @(
     'Get-MigrationConfig',
     'Get-LatestStateFile',
     'Get-ProjectServiceConnections',
-    'New-RepositoryMapping'
+    'New-RepositoryMapping',
+    'Add-GitHubColumnsToReposCSV'
 )

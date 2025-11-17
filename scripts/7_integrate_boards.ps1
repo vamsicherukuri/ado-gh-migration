@@ -244,6 +244,7 @@ foreach ($repoInfo in $repositoriesToIntegrate) {
             --github-org "$githubOrg" `
             --github-repo "$githubRepo" `
             --ado-org "$adoOrg" `
+            --verbose `
             --ado-team-project "$adoTeamProject" 2>&1 | Out-String
         
         # Check for the conflict error specifically (fallback detection)
